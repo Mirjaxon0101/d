@@ -62,7 +62,7 @@ export function Navbar({
               </div>
               <div className="flex flex-col text-left">
                 <span className="text-xl font-black tracking-tight bg-gradient-to-r from-blue-600 via-indigo-600 to-sky-500 dark:from-blue-400 dark:via-indigo-400 dark:to-sky-400 bg-clip-text text-transparent">
-                  RoboContest
+                  BlueContest
                 </span>
                 <span className="text-[10px] font-semibold tracking-widest text-slate-400 dark:text-slate-500 -mt-1 uppercase">
                   ONLINE JUDGE
@@ -282,17 +282,17 @@ export function Footer({ language = 'uz' }) {
               <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white">
                 <Terminal className="w-5 h-5 stroke-[2.5]" />
               </div>
-              <span className="text-lg font-bold text-slate-900 dark:text-white">RoboContest</span>
+              <span className="text-lg font-bold text-slate-900 dark:text-white">BlueContest</span>
             </div>
             <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
               {language === 'uz'
-                ? "O'zbekistondagi eng yirik dasturlash va sport dasturlashi hamjamiyati hamda avtomatlashtirilgan baholash tizimi."
+                ? "Dasturlash va sport dasturlashi hamjamiyati hamda avtomatlashtirilgan baholash tizimi."
                 : language === 'ru'
-                ? 'Крупнейшее сообщество спортивного программирования и онлайн-судья в Узбекистане.'
-                : 'The largest competitive programming community and online judge platform in Uzbekistan.'}
+                ? 'Сообщество спортивного программирования и онлайн-судья.'
+                : 'Competitive programming community and online judge platform.'}
             </p>
             <p className="text-xs text-slate-400">
-              © {new Date().getFullYear()} RoboContest.uz. All rights reserved.
+              © {new Date().getFullYear()} BlueContest. All rights reserved.
             </p>
           </div>
 
@@ -331,10 +331,10 @@ export function Footer({ language = 'uz' }) {
               Savollaringiz bormi? Telegram kanalimizga qo'shiling.
             </p>
             <div className="flex space-x-3 pt-1">
-              <a href="https://t.me/robocontest" target="_blank" rel="noreferrer" className="px-3 py-1.5 rounded-lg bg-sky-50 dark:bg-sky-950/40 text-sky-600 dark:text-sky-400 border border-sky-200 dark:border-sky-800 text-xs font-semibold hover:bg-sky-100 transition-colors">
+              <a href="#" className="px-3 py-1.5 rounded-lg bg-sky-50 dark:bg-sky-950/40 text-sky-600 dark:text-sky-400 border border-sky-200 dark:border-sky-800 text-xs font-semibold hover:bg-sky-100 transition-colors">
                 Telegram Channel
               </a>
-              <a href="https://t.me/robocontest_chat" target="_blank" rel="noreferrer" className="px-3 py-1.5 rounded-lg bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-800 text-xs font-semibold hover:bg-indigo-100 transition-colors">
+              <a href="#" className="px-3 py-1.5 rounded-lg bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-800 text-xs font-semibold hover:bg-indigo-100 transition-colors">
                 Discussion Chat
               </a>
             </div>

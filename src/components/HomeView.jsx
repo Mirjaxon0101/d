@@ -31,7 +31,7 @@ export function HomeView({
 
   const upcomingContest = {
     id: 'c101',
-    title: 'RoboContest Round #98 (Div 2 + Div 1)',
+    title: 'BlueContest Round #98 (Div 2 + Div 1)',
     startTime: '2025-03-20 19:30',
     duration: '2 soat 30 daqiqa',
     participants: 1240,
@@ -58,8 +58,8 @@ export function HomeView({
     {
       date: '10 Mart, 2025',
       title: 'Xalqaro Informatika Olimpiadasiga (IOI 2025) Saralash Bosqichi e\'lon qilindi!',
-      summary: 'RoboContest platformasida respublika bo\'yicha o\'quvchilar uchun saralash musobaqalari fevral va mart oylarida o\'tkaziladi.',
-      author: 'RoboContest Admin',
+      summary: 'BlueContest platformasida respublika bo\'yicha o\'quvchilar uchun saralash musobaqalari fevral va mart oylarida o\'tkaziladi.',
+      author: 'BlueContest Admin',
       tag: 'Olimpiada'
     },
     {
@@ -82,7 +82,7 @@ export function HomeView({
         <div className="relative z-10 max-w-3xl space-y-6">
           <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs font-bold tracking-wide uppercase">
             <Sparkles className="w-3.5 h-3.5" />
-            <span>RoboContest Online Judge 2.0</span>
+            <span>BlueContest Online Judge 2.0</span>
           </div>
 
           <h1 className="text-3xl sm:text-5xl font-black leading-tight tracking-tight">
@@ -322,12 +322,12 @@ export function HomeView({
           <div className="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-slate-800/60 dark:to-slate-800/90 rounded-2xl p-5 border border-blue-100 dark:border-slate-700 space-y-3">
             <h4 className="font-bold text-slate-900 dark:text-white text-sm flex items-center gap-1.5">
               <Star className="w-4 h-4 text-amber-500 fill-amber-500" />
-              RoboContest platformasi tartibi
+              BlueContest platformasi tartibi
             </h4>
             <ul className="space-y-2 text-xs text-slate-600 dark:text-slate-300">
               <li className="flex items-start gap-2">
                 <CheckCircle className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
-                <span>Masalalar C++, Python, Java, Pascal va JavaScript tillarida tekshiriladi.</span>
+                <span>Masalalar C++, Python, Java va JavaScript tillarida tekshiriladi.</span>
               </li>
               <li className="flex items-start gap-2">
                 <CheckCircle className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
