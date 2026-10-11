@@ -19,7 +19,15 @@ import {
 } from 'lucide-react'
 import { initialProblems } from '../data/problemsData'
 
-export function ProblemsView({ language = 'uz', problemsList = initialProblems, onSelectProblem, activeProblemModal, onCloseModal }) {
+export function ProblemsView({
+  language = 'uz',
+  problemsList = initialProblems,
+  onSelectProblem,
+  activeProblemModal,
+  onCloseModal,
+  currentUser,
+  onOpenAuth
+}) {
   const [searchTerm, setSearchTerm] = useState('')
   const [difficultyFilter, setDifficultyFilter] = useState('Barchasi')
   const [tagFilter, setTagFilter] = useState('Barchasi')
@@ -199,7 +207,14 @@ export function ProblemsView({ language = 'uz', problemsList = initialProblems, 
                   <tr
                     key={prob.id}
                     className="hover:bg-slate-50/80 dark:hover:bg-slate-700/30 transition-colors group cursor-pointer"
-                    onClick={() => setSelectedProblem(prob)}
+                    onClick={() => {
+                      if (!currentUser) {
+                        alert("Masalalarni yechish uchun avval tizimga kiring!")
+                        if (onOpenAuth) onOpenAuth('login')
+                        return
+                      }
+                      setSelectedProblem(prob)
+                    }}
                   >
                     <td className="py-4 px-4 text-center font-mono font-bold text-slate-400">
                       #{prob.id}
@@ -242,6 +257,11 @@ export function ProblemsView({ language = 'uz', problemsList = initialProblems, 
                       <button
                         onClick={(e) => {
                           e.stopPropagation()
+                          if (!currentUser) {
+                            alert("Masalalarni yechish uchun avval tizimga kiring!")
+                            if (onOpenAuth) onOpenAuth('login')
+                            return
+                          }
                           setSelectedProblem(prob)
                         }}
                         className="px-3.5 py-1.5 rounded-lg bg-blue-50 hover:bg-blue-600 text-blue-600 hover:text-white dark:bg-blue-950/60 dark:hover:bg-blue-600 dark:text-blue-400 dark:hover:text-white text-xs font-bold transition-all shadow-sm"

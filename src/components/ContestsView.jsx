@@ -13,7 +13,7 @@ import {
   Info
 } from 'lucide-react'
 
-export function ContestsView({ language = 'uz', activeContestModal, onCloseModal }) {
+export function ContestsView({ language = 'uz', activeContestModal, onCloseModal, currentUser, onOpenAuth }) {
   const [activeTab, setActiveTab] = useState('upcoming') // 'upcoming' | 'running' | 'past'
   const [selectedContest, setSelectedContest] = useState(activeContestModal || null)
   const [isRegistered, setIsRegistered] = useState(false)
@@ -297,7 +297,14 @@ export function ContestsView({ language = 'uz', activeContestModal, onCloseModal
               </span>
 
               <button
-                onClick={() => setIsRegistered(!isRegistered)}
+                onClick={() => {
+                  if (!currentUser) {
+                    alert("Musobaqalarga qatnashish uchun avval tizimga kiring!")
+                    if (onOpenAuth) onOpenAuth('login')
+                    return
+                  }
+                  setIsRegistered(!isRegistered)
+                }}
                 className={`px-6 py-2.5 rounded-xl font-bold text-xs transition-all shadow-md ${
                   isRegistered
                     ? 'bg-emerald-600 text-white'

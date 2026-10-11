@@ -7,6 +7,7 @@ import { RatingsView } from './components/RatingsView'
 import { DiscussionsView } from './components/DiscussionsView'
 import { AdminPanel } from './components/AdminPanel'
 import { AuthModal } from './components/AuthModal'
+import { UserSettingsModal } from './components/UserSettingsModal'
 import { initialProblems } from './data/problemsData'
 
 export default function App() {
@@ -54,9 +55,10 @@ export default function App() {
   const [activeProblemModal, setActiveProblemModal] = useState(null)
   const [activeContestModal, setActiveContestModal] = useState(null)
 
-  // Auth modal
+  // Auth & Settings modals
   const [authModalOpen, setAuthModalOpen] = useState(false)
   const [authMode, setAuthMode] = useState('login')
+  const [settingsModalOpen, setSettingsModalOpen] = useState(false)
 
   const handleOpenAuth = (mode) => {
     setAuthMode(mode)
@@ -89,6 +91,7 @@ export default function App() {
         onOpenAuth={handleOpenAuth}
         currentUser={currentUser}
         onLogout={() => setCurrentUser(null)}
+        onOpenSettings={() => setSettingsModalOpen(true)}
       />
 
       {/* Main Dynamic View Content */}
@@ -109,6 +112,8 @@ export default function App() {
             problemsList={problems}
             activeProblemModal={activeProblemModal}
             onCloseModal={() => setActiveProblemModal(null)}
+            currentUser={currentUser}
+            onOpenAuth={handleOpenAuth}
           />
         )}
 
@@ -118,6 +123,8 @@ export default function App() {
             contestsList={contests}
             activeContestModal={activeContestModal}
             onCloseModal={() => setActiveContestModal(null)}
+            currentUser={currentUser}
+            onOpenAuth={handleOpenAuth}
           />
         )}
 
@@ -158,6 +165,17 @@ export default function App() {
         }}
         onLoginUser={(user) => {
           setCurrentUser(user)
+        }}
+      />
+
+      {/* User Settings Modal */}
+      <UserSettingsModal
+        isOpen={settingsModalOpen}
+        onClose={() => setSettingsModalOpen(false)}
+        currentUser={currentUser}
+        onUpdateUser={(updatedUser) => {
+          setCurrentUser(updatedUser)
+          setUsers(prev => prev.map(u => u.id === updatedUser.id ? updatedUser : u))
         }}
       />
 
