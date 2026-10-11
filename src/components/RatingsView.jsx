@@ -19,8 +19,9 @@ export function RatingsView({ language = 'uz', users = [], setUsers }) {
   const [searchCoder, setSearchCoder] = useState('')
   const [selectedUserModal, setSelectedUserModal] = useState(null)
 
-  // Sort users dynamically by rating descending
-  const sortedUsers = [...users].sort((a, b) => b.rating - a.rating).map((u, index) => ({
+  // Sort non-blocked active users dynamically by rating descending
+  const activeUsers = users.filter(u => !u.isBlocked)
+  const sortedUsers = [...activeUsers].sort((a, b) => b.rating - a.rating).map((u, index) => ({
     ...u,
     rank: index + 1
   }))

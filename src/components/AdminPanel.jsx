@@ -512,23 +512,45 @@ export function AdminPanel({
               {users.map((u) => (
                 <div key={u.id} className="py-3 flex items-center justify-between text-xs">
                   <div className="flex items-center space-x-3">
-                    <span className="text-xl">{u.avatar}</span>
+                    <span className="text-xl">{u.avatar || '💻'}</span>
                     <div>
-                      <span className="font-bold text-slate-800 dark:text-slate-100 block">{u.name}</span>
-                      <span className="text-slate-400 text-[10px]">{u.org} • Rating: {u.rating}</span>
+                      <div className="flex items-center space-x-2">
+                        <span className="font-bold text-slate-800 dark:text-slate-100 block">{u.name}</span>
+                        {u.isBlocked && (
+                          <span className="px-1.5 py-0.2 rounded bg-red-500/20 text-red-500 text-[10px] font-bold uppercase">
+                            Bloklangan
+                          </span>
+                        )}
+                      </div>
+                      <span className="text-slate-400 text-[10px]">{u.org || 'Foydalanuvchi'} • Rating: {u.rating}</span>
                     </div>
                   </div>
 
-                  <button
-                    onClick={() => {
-                      if (window.confirm(`${u.name} profili va reytingi o'chirilsinmi?`)) {
-                        setUsers(users.filter(usr => usr.id !== u.id))
-                      }
-                    }}
-                    className="p-1.5 rounded-lg bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 hover:bg-red-600 hover:text-white transition-colors"
-                  >
-                    <Trash2 className="w-4 h-4" />
-                  </button>
+                  <div className="flex items-center space-x-2">
+                    <button
+                      onClick={() => {
+                        setUsers(users.map(usr => usr.id === u.id ? { ...usr, isBlocked: !usr.isBlocked } : usr))
+                      }}
+                      className={`px-2.5 py-1 rounded-lg font-bold text-[11px] transition-colors ${
+                        u.isBlocked
+                          ? 'bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 hover:bg-emerald-600 hover:text-white'
+                          : 'bg-amber-50 dark:bg-amber-950/40 text-amber-600 hover:bg-amber-600 hover:text-white'
+                      }`}
+                    >
+                      {u.isBlocked ? "Blokdan Chiqarish" : "Bloklash"}
+                    </button>
+
+                    <button
+                      onClick={() => {
+                        if (window.confirm(`${u.name} profili va reytingi o'chirilsinmi?`)) {
+                          setUsers(users.filter(usr => usr.id !== u.id))
+                        }
+                      }}
+                      className="p-1.5 rounded-lg bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 hover:bg-red-600 hover:text-white transition-colors"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </button>
+                  </div>
                 </div>
               ))}
               {users.length === 0 && (

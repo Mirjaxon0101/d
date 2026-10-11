@@ -57,6 +57,10 @@ export function AuthModal({
       )
 
       if (matchedUser) {
+        if (matchedUser.isBlocked) {
+          setErrorMsg("Sizning akkauntingiz admin tomonidan bloklangan!")
+          return
+        }
         if (onLoginUser) onLoginUser(matchedUser)
         setSuccessMsg("Muvaffaqiyatli tizimga kirdingiz!")
         setTimeout(() => {
