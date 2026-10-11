@@ -19,6 +19,7 @@ export const getRankTheme = (title = 'Newbie') => {
         bgGradient: 'from-orange-500/20 via-yellow-500/10 to-transparent',
         badgeBg: 'bg-gradient-to-r from-orange-500 to-amber-500 text-white shadow-md shadow-orange-500/20'
       };
+    case 'High Master':
     case 'Master':
       return {
         strokePrimary: '#a855f7', // Purple-500
