@@ -18,9 +18,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -42,9 +42,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -66,9 +66,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -90,9 +90,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -114,9 +114,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -138,9 +138,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -162,9 +162,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -186,9 +186,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -210,9 +210,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -234,9 +234,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -258,9 +258,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -282,9 +282,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -306,9 +306,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -330,9 +330,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -354,9 +354,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -378,9 +378,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -402,9 +402,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -426,9 +426,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -450,9 +450,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -474,9 +474,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -498,9 +498,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -522,9 +522,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -546,9 +546,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -570,9 +570,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -594,9 +594,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -618,9 +618,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -642,9 +642,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -666,9 +666,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -690,9 +690,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -714,9 +714,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -738,9 +738,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -762,9 +762,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -786,9 +786,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -810,9 +810,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -834,9 +834,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -858,9 +858,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -882,9 +882,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -906,9 +906,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -930,9 +930,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -954,9 +954,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -978,9 +978,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -1002,9 +1002,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -1026,9 +1026,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -1050,9 +1050,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -1074,9 +1074,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -1098,9 +1098,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -1122,9 +1122,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -1146,9 +1146,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -1170,9 +1170,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -1194,9 +1194,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -1218,9 +1218,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -1242,9 +1242,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -1266,9 +1266,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -1290,9 +1290,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -1314,9 +1314,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -1338,9 +1338,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -1362,9 +1362,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -1386,9 +1386,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -1410,9 +1410,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -1434,9 +1434,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -1458,9 +1458,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -1482,9 +1482,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -1506,9 +1506,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -1530,9 +1530,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -1554,9 +1554,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -1578,9 +1578,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -1602,9 +1602,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -1626,9 +1626,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -1650,9 +1650,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -1674,9 +1674,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -1698,9 +1698,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -1722,9 +1722,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -1746,9 +1746,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -1770,9 +1770,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -1794,9 +1794,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -1818,9 +1818,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -1842,9 +1842,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -1866,9 +1866,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -1890,9 +1890,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -1914,9 +1914,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -1938,9 +1938,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -1962,9 +1962,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -1986,9 +1986,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -2010,9 +2010,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -2034,9 +2034,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -2058,9 +2058,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -2082,9 +2082,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -2106,9 +2106,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -2130,9 +2130,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -2154,9 +2154,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -2178,9 +2178,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -2202,9 +2202,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -2226,9 +2226,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -2250,9 +2250,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -2274,9 +2274,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -2298,9 +2298,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -2322,9 +2322,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -2346,9 +2346,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -2370,9 +2370,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   },
   {
@@ -2394,9 +2394,9 @@ export const initialProblems = [
     "sampleInput": "5\n1 2 3 4 5",
     "sampleOutput": "15",
     "templateCode": {
-      "cpp": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Yechim kodingiz\n    cout << 15 << endl;\n    return 0;\n}",
-      "python": "import sys\n\ndef solve():\n    print(15)\n\nif __name__ == '__main__':\n    solve()",
-      "javascript": "console.log(15);"
+      "cpp": "",
+      "python": "",
+      "javascript": ""
     }
   }
 ];

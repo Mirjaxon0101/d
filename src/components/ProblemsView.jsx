@@ -36,8 +36,7 @@ export function ProblemsView({ language = 'uz', onSelectProblem, activeProblemMo
 
   React.useEffect(() => {
     if (selectedProblem) {
-      const code = selectedProblem.templateCode[codeLang] || selectedProblem.templateCode.python || ''
-      setUserCode(code)
+      setUserCode('')
       setCustomInput(selectedProblem.sampleInput)
       setCustomOutput('')
       setJudgeStatus(null)
@@ -75,7 +74,7 @@ export function ProblemsView({ language = 'uz', onSelectProblem, activeProblemMo
           const sum = Number(parts[0]) + Number(parts[1])
           setCustomOutput(isNaN(sum) ? 'NaN' : sum.toString())
         } else {
-          setCustomOutput('Xatolik: yetarli son kiritiilmadi')
+          setCustomOutput('Xatolik: yetarli son kiritilmadi')
         }
       } else {
         setCustomOutput(selectedProblem.sampleOutput)
@@ -88,7 +87,7 @@ export function ProblemsView({ language = 'uz', onSelectProblem, activeProblemMo
     setJudgeStatus({ status: 'Running', time: '...', memory: '...' })
     setTimeout(() => {
       setIsEvaluating(false)
-      if (userCode.trim().length > 15) {
+      if (userCode.trim().length > 10) {
         setJudgeStatus({
           status: 'Accepted',
           time: '24 ms',
@@ -100,7 +99,7 @@ export function ProblemsView({ language = 'uz', onSelectProblem, activeProblemMo
           status: 'Wrong Answer',
           time: '18 ms',
           memory: '7.1 MB',
-          passedTests: '2 / 10'
+          passedTests: '0 / 10'
         })
       }
     }, 1200)
@@ -377,7 +376,7 @@ export function ProblemsView({ language = 'uz', onSelectProblem, activeProblemMo
                   <textarea
                     value={userCode}
                     onChange={(e) => setUserCode(e.target.value)}
-                    placeholder="// Yechim kodingizni shu yerga yozing..."
+                    placeholder="// Kodingizni shu yerga yozing..."
                     spellCheck="false"
                     className="w-full h-full p-4 bg-slate-950 text-emerald-400 font-mono text-xs sm:text-sm focus:outline-none resize-none leading-relaxed border-none"
                   />
