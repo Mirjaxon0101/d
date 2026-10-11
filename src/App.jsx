@@ -15,6 +15,9 @@ export default function App() {
   const [language, setLanguage] = useState('uz')
   const [searchQuery, setSearchQuery] = useState('')
 
+  // Dynamic Leaderboard Users state (initialized empty so only registered users appear)
+  const [users, setUsers] = useState([])
+
   // Dynamic Problems & Contests state
   const [problems, setProblems] = useState(initialProblems)
   const [contests, setContests] = useState([
@@ -91,6 +94,7 @@ export default function App() {
             onNavigateTab={setCurrentTab}
             onOpenProblem={handleOpenProblem}
             onOpenContest={handleOpenContest}
+            users={users}
           />
         )}
 
@@ -113,7 +117,7 @@ export default function App() {
         )}
 
         {currentTab === 'ratings' && (
-          <RatingsView language={language} />
+          <RatingsView language={language} users={users} setUsers={setUsers} />
         )}
 
         {currentTab === 'discussions' && (
@@ -127,6 +131,8 @@ export default function App() {
             setProblems={setProblems}
             contests={contests}
             setContests={setContests}
+            users={users}
+            setUsers={setUsers}
           />
         )}
       </main>
@@ -140,6 +146,9 @@ export default function App() {
         onClose={() => setAuthModalOpen(false)}
         initialMode={authMode}
         language={language}
+        onRegisterUser={(newUser) => {
+          setUsers(prev => [newUser, ...prev])
+        }}
       />
 
     </div>

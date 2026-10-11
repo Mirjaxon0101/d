@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { X, Lock, Mail, User, ShieldCheck, ArrowRight } from 'lucide-react'
 
-export function AuthModal({ isOpen, onClose, initialMode = 'login', language = 'uz' }) {
+export function AuthModal({ isOpen, onClose, initialMode = 'login', language = 'uz', onRegisterUser }) {
   const [mode, setMode] = useState(initialMode) // 'login' | 'register'
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
@@ -12,13 +12,29 @@ export function AuthModal({ isOpen, onClose, initialMode = 'login', language = '
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    if (mode === 'register' && onRegisterUser) {
+      const newUser = {
+        id: `u_${Date.now()}`,
+        name: username || 'Yangi_Dasturchi',
+        rating: 1500,
+        title: 'Newbie',
+        titleColor: 'text-slate-500 bg-slate-500/10 border-slate-500/20',
+        solved: 0,
+        org: 'Mustaqil o\'rganuvchi',
+        avatar: '💻'
+      }
+      onRegisterUser(newUser)
+    }
     setSuccessMsg(
       mode === 'login'
         ? "Muvaffaqiyatli tizimga kirdingiz!"
-        : "Ro'yxatdan o'tish muvaffaqiyatli yakunlandi! Xush kelibsiz."
+        : "Ro'yxatdan o'tish muvaffaqiyatli yakunlandi! Siz reyting jadvallariga qo'shildingiz."
     )
     setTimeout(() => {
       setSuccessMsg('')
+      setUsername('')
+      setEmail('')
+      setPassword('')
       onClose()
     }, 1500)
   }

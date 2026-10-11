@@ -21,7 +21,9 @@ export function AdminPanel({
   problems,
   setProblems,
   contests,
-  setContests
+  setContests,
+  users = [],
+  setUsers
 }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [username, setUsername] = useState('')
@@ -29,7 +31,14 @@ export function AdminPanel({
   const [loginError, setLoginError] = useState('')
 
   // Active Admin Sub-tab
-  const [adminTab, setAdminTab] = useState('problems') // 'problems' | 'contests' | 'stats'
+  const [adminTab, setAdminTab] = useState('problems') // 'problems' | 'contests' | 'users'
+
+  // New User Form State
+  const [newUserName, setNewUserName] = useState('')
+  const [newUserRating, setNewUserRating] = useState('1800')
+  const [newUserTitle, setNewUserTitle] = useState('Specialist')
+  const [newUserOrg, setNewUserOrg] = useState('TATU')
+  const [userSuccess, setUserSuccess] = useState('')
 
   // New Problem Form state
   const [newProbTitle, setNewProbTitle] = useState('')
@@ -225,7 +234,7 @@ export function AdminPanel({
           }`}
         >
           <Code2 className="w-4 h-4" />
-          <span>Masalalar Boshqaruvi ({problems.length})</span>
+          <span>Masalalar ({problems.length})</span>
         </button>
 
         <button
@@ -237,7 +246,19 @@ export function AdminPanel({
           }`}
         >
           <Trophy className="w-4 h-4" />
-          <span>Musobaqalar Boshqaruvi ({contests.length})</span>
+          <span>Musobaqalar ({contests.length})</span>
+        </button>
+
+        <button
+          onClick={() => setAdminTab('users')}
+          className={`px-5 py-2.5 rounded-xl text-sm font-bold flex items-center space-x-2 transition-all ${
+            adminTab === 'users'
+              ? 'bg-blue-600 text-white shadow-md'
+              : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'
+          }`}
+        >
+          <Users className="w-4 h-4" />
+          <span>Foydalanuvchilar va Reyting ({users.length})</span>
         </button>
       </div>
 
@@ -370,6 +391,153 @@ export function AdminPanel({
             </div>
           </div>
 
+        </div>
+      )}
+
+      {/* Users Admin Tab */}
+      {adminTab === 'users' && (
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          <form
+            onSubmit={(e) => {
+              e.preventDefault()
+              if (!newUserName.trim()) return
+              const createdUser = {
+                id: `u_${Date.now()}`,
+                name: newUserName,
+                rating: parseInt(newUserRating) || 1500,
+                title: newUserTitle,
+                titleColor: 'text-blue-500 bg-blue-500/10 border-blue-500/20',
+                solved: 10,
+                org: newUserOrg || "Noma'lum",
+                avatar: '💻'
+              }
+              setUsers([createdUser, ...users])
+              setUserSuccess("Yangi dasturchi saqlandi!")
+              setNewUserName('')
+              setTimeout(() => setUserSuccess(''), 3000)
+            }}
+            className="lg:col-span-5 bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-4"
+          >
+            <h3 className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
+              <User className="w-5 h-5 text-indigo-500" />
+              <span>Dasturchi Qo'shish / Reyting Boshqaruvi</span>
+            </h3>
+
+            {userSuccess && (
+              <div className="p-3 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 text-emerald-600 dark:text-emerald-300 font-bold text-xs">
+                {userSuccess}
+              </div>
+            )}
+
+            <div>
+              <label className="block text-xs font-bold text-slate-500 uppercase mb-1">Dasturchi Ismi (Username)</label>
+              <input
+                type="text"
+                required
+                placeholder="masalan: Bekzod_CP"
+                value={newUserName}
+                onChange={(e) => setNewUserName(e.target.value)}
+                className="w-full px-3.5 py-2 rounded-xl bg-slate-100 dark:bg-slate-900 text-sm font-semibold border border-transparent focus:border-blue-500 focus:outline-none"
+              />
+            </div>
+
+            <div className="grid grid-cols-2 gap-3">
+              <div>
+                <label className="block text-xs font-bold text-slate-500 uppercase mb-1">Reyting Balli</label>
+                <input
+                  type="number"
+                  value={newUserRating}
+                  onChange={(e) => setNewUserRating(e.target.value)}
+                  className="w-full px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-900 text-xs font-semibold border border-transparent focus:border-blue-500 focus:outline-none"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold text-slate-500 uppercase mb-1">Unvon (Title)</label>
+                <select
+                  value={newUserTitle}
+                  onChange={(e) => setNewUserTitle(e.target.value)}
+                  className="w-full px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-900 text-xs font-semibold border border-transparent focus:border-blue-500 focus:outline-none"
+                >
+                  <option value="Grandmaster">Grandmaster</option>
+                  <option value="Master">Master</option>
+                  <option value="Candidate Master">Candidate Master</option>
+                  <option value="Expert">Expert</option>
+                  <option value="Specialist">Specialist</option>
+                  <option value="Pupil">Pupil</option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-xs font-bold text-slate-500 uppercase mb-1">O'quv maskani / Tashkilot</label>
+              <input
+                type="text"
+                value={newUserOrg}
+                onChange={(e) => setNewUserOrg(e.target.value)}
+                className="w-full px-3.5 py-2 rounded-xl bg-slate-100 dark:bg-slate-900 text-sm font-semibold border border-transparent focus:border-blue-500 focus:outline-none"
+              />
+            </div>
+
+            <button
+              type="submit"
+              className="w-full py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs shadow-md transition-all flex items-center justify-center space-x-2"
+            >
+              <Save className="w-4 h-4" />
+              <span>Dasturchini Saqlash</span>
+            </button>
+          </form>
+
+          {/* User List and Delete fake users */}
+          <div className="lg:col-span-7 bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-4 max-h-[750px] flex flex-col">
+            <div className="flex items-center justify-between">
+              <h3 className="text-base font-bold text-slate-900 dark:text-white">
+                Platformadagi Barcha Dasturchilar
+              </h3>
+              {users.length > 0 && (
+                <button
+                  onClick={() => {
+                    if (window.confirm("Barcha soxta/noaniq foydalanuvchilar tozalanadimi?")) {
+                      setUsers([])
+                    }
+                  }}
+                  className="text-xs text-red-500 font-bold hover:underline"
+                >
+                  Hammasini Tozalash
+                </button>
+              )}
+            </div>
+
+            <div className="flex-1 overflow-y-auto divide-y divide-slate-100 dark:divide-slate-700/60 pr-1">
+              {users.map((u) => (
+                <div key={u.id} className="py-3 flex items-center justify-between text-xs">
+                  <div className="flex items-center space-x-3">
+                    <span className="text-xl">{u.avatar}</span>
+                    <div>
+                      <span className="font-bold text-slate-800 dark:text-slate-100 block">{u.name}</span>
+                      <span className="text-slate-400 text-[10px]">{u.org} • Rating: {u.rating}</span>
+                    </div>
+                  </div>
+
+                  <button
+                    onClick={() => {
+                      if (window.confirm(`${u.name} profili va reytingi o'chirilsinmi?`)) {
+                        setUsers(users.filter(usr => usr.id !== u.id))
+                      }
+                    }}
+                    className="p-1.5 rounded-lg bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 hover:bg-red-600 hover:text-white transition-colors"
+                  >
+                    <Trash2 className="w-4 h-4" />
+                  </button>
+                </div>
+              ))}
+              {users.length === 0 && (
+                <div className="py-8 text-center text-slate-400 text-xs">
+                  Foydalanuvchilar mavjud emas. Yangi ro'yxatdan o'tganlar shu yerda ko'rinadi.
+                </div>
+              )}
+            </div>
+          </div>
         </div>
       )}
 

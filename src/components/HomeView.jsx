@@ -20,7 +20,8 @@ export function HomeView({
   language = 'uz',
   onNavigateTab,
   onOpenProblem,
-  onOpenContest
+  onOpenContest,
+  users = []
 }) {
   const stats = [
     { label: { uz: 'Jami masalalar', ru: 'Всего задач', en: 'Total Problems' }, value: '1,248+', icon: Code, color: 'text-blue-500 bg-blue-500/10' },
@@ -46,13 +47,17 @@ export function HomeView({
     { id: 4, title: 'Nodir ketma-ketliklar', difficulty: 'Oʻrta', difficultyColor: 'text-amber-500 bg-amber-500/10', solved: '54.0%', tags: ['Dynamic Programming'] },
   ]
 
-  const topCoders = [
-    { rank: 1, name: 'Asadbek_Olimov', rating: 2840, badge: 'Grandmaster', badgeColor: 'text-red-500 bg-red-500/10', avatar: '👨‍💻' },
-    { rank: 2, name: 'AlgoNinja_99', rating: 2690, badge: 'Master', badgeColor: 'text-purple-500 bg-purple-500/10', avatar: '⚡' },
-    { rank: 3, name: 'Javohir_Dev', rating: 2510, badge: 'Master', badgeColor: 'text-purple-500 bg-purple-500/10', avatar: '🚀' },
-    { rank: 4, name: 'CyberCoder_UZ', rating: 2380, badge: 'Candidate Master', badgeColor: 'text-blue-500 bg-blue-500/10', avatar: '💻' },
-    { rank: 5, name: 'Shahzod_CP', rating: 2240, badge: 'Candidate Master', badgeColor: 'text-blue-500 bg-blue-500/10', avatar: '🎯' },
-  ]
+  const topCoders = [...users]
+    .sort((a, b) => b.rating - a.rating)
+    .slice(0, 5)
+    .map((u, i) => ({
+      rank: i + 1,
+      name: u.name,
+      rating: u.rating,
+      badge: u.title || 'Coder',
+      badgeColor: u.titleColor || 'text-blue-500 bg-blue-500/10',
+      avatar: u.avatar || '💻'
+    }))
 
   const newsItems = [
     {
@@ -291,30 +296,36 @@ export function HomeView({
             </div>
 
             <div className="space-y-3">
-              {topCoders.map((coder) => (
-                <div key={coder.rank} className="flex items-center justify-between text-sm">
-                  <div className="flex items-center space-x-3">
-                    <span className={`w-6 text-center font-bold ${
-                      coder.rank === 1 ? 'text-amber-500' : coder.rank === 2 ? 'text-slate-400' : coder.rank === 3 ? 'text-amber-700' : 'text-slate-400'
-                    }`}>
-                      #{coder.rank}
-                    </span>
-                    <span className="text-lg">{coder.avatar}</span>
-                    <div className="flex flex-col">
-                      <span className="font-bold text-slate-800 dark:text-slate-200 hover:text-blue-600 transition-colors cursor-pointer">
-                        {coder.name}
+              {topCoders.length > 0 ? (
+                topCoders.map((coder) => (
+                  <div key={coder.rank} className="flex items-center justify-between text-sm">
+                    <div className="flex items-center space-x-3">
+                      <span className={`w-6 text-center font-bold ${
+                        coder.rank === 1 ? 'text-amber-500' : coder.rank === 2 ? 'text-slate-400' : coder.rank === 3 ? 'text-amber-700' : 'text-slate-400'
+                      }`}>
+                        #{coder.rank}
                       </span>
-                      <span className={`text-[10px] font-extrabold uppercase tracking-wide w-max px-1.5 py-0.2 rounded ${coder.badgeColor}`}>
-                        {coder.badge}
-                      </span>
+                      <span className="text-lg">{coder.avatar}</span>
+                      <div className="flex flex-col">
+                        <span className="font-bold text-slate-800 dark:text-slate-200 hover:text-blue-600 transition-colors cursor-pointer">
+                          {coder.name}
+                        </span>
+                        <span className={`text-[10px] font-extrabold uppercase tracking-wide w-max px-1.5 py-0.2 rounded ${coder.badgeColor}`}>
+                          {coder.badge}
+                        </span>
+                      </div>
                     </div>
-                  </div>
 
-                  <span className="font-mono font-bold text-slate-700 dark:text-slate-300">
-                    {coder.rating}
-                  </span>
-                </div>
-              ))}
+                    <span className="font-mono font-bold text-slate-700 dark:text-slate-300">
+                      {coder.rating}
+                    </span>
+                  </div>
+                ))
+              ) : (
+                <p className="text-xs text-slate-400 py-2 text-center">
+                  Hozircha reytingda foydalanuvchilar mavjud emas. Ro'yxatdan o'ting!
+                </p>
+              )}
             </div>
           </div>
 

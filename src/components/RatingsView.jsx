@@ -15,24 +15,17 @@ import {
   Code
 } from 'lucide-react'
 
-export function RatingsView({ language = 'uz' }) {
+export function RatingsView({ language = 'uz', users = [], setUsers }) {
   const [searchCoder, setSearchCoder] = useState('')
   const [selectedUserModal, setSelectedUserModal] = useState(null)
 
-  const leaderboards = [
-    { rank: 1, name: 'Asadbek_Olimov', rating: 2840, title: 'Grandmaster', titleColor: 'text-red-500 bg-red-500/10 border-red-500/20', solved: 482, org: 'TATU / TUIT', avatar: '👨‍💻' },
-    { rank: 2, name: 'AlgoNinja_99', rating: 2690, title: 'Master', titleColor: 'text-purple-500 bg-purple-500/10 border-purple-500/20', solved: 410, org: 'Inha University in Tashkent', avatar: '⚡' },
-    { rank: 3, name: 'Javohir_Dev', rating: 2510, title: 'Master', titleColor: 'text-purple-500 bg-purple-500/10 border-purple-500/20', solved: 395, org: 'New Uzbekistan University', avatar: '🚀' },
-    { rank: 4, name: 'CyberCoder_UZ', rating: 2380, title: 'Candidate Master', titleColor: 'text-blue-500 bg-blue-500/10 border-blue-500/20', solved: 360, org: 'Amity University Tashkent', avatar: '💻' },
-    { rank: 5, name: 'Shahzod_CP', rating: 2240, title: 'Candidate Master', titleColor: 'text-blue-500 bg-blue-500/10 border-blue-500/20', solved: 310, org: 'SamDU', avatar: '🎯' },
-    { rank: 6, name: 'Bekzod_Algo', rating: 2110, title: 'Expert', titleColor: 'text-emerald-500 bg-emerald-500/10 border-emerald-500/20', solved: 285, org: 'Muhammad al-Xorazmiy maktabi', avatar: '🎓' },
-    { rank: 7, name: 'Nodira_Code', rating: 1980, title: 'Expert', titleColor: 'text-emerald-500 bg-emerald-500/10 border-emerald-500/20', solved: 260, org: 'TATU Karshi', avatar: '👩‍💻' },
-    { rank: 8, name: 'Sardor_Dev', rating: 1850, title: 'Specialist', titleColor: 'text-cyan-500 bg-cyan-500/10 border-cyan-500/20', solved: 220, org: 'Tashkent Lyceum #1', avatar: '🔍' },
-    { rank: 9, name: 'Farrukh_Programmer', rating: 1720, title: 'Specialist', titleColor: 'text-cyan-500 bg-cyan-500/10 border-cyan-500/20', solved: 195, org: 'UrDU', avatar: '🔥' },
-    { rank: 10, name: 'Rustam_CP', rating: 1650, title: 'Pupil', titleColor: 'text-slate-500 bg-slate-500/10 border-slate-500/20', solved: 170, org: 'TATU Samarqand', avatar: '📦' },
-  ]
+  // Sort users dynamically by rating descending
+  const sortedUsers = [...users].sort((a, b) => b.rating - a.rating).map((u, index) => ({
+    ...u,
+    rank: index + 1
+  }))
 
-  const filteredCoders = leaderboards.filter(c =>
+  const filteredCoders = sortedUsers.filter(c =>
     c.name.toLowerCase().includes(searchCoder.toLowerCase()) ||
     c.org.toLowerCase().includes(searchCoder.toLowerCase())
   )
@@ -67,7 +60,7 @@ export function RatingsView({ language = 'uz' }) {
 
       {/* Top 3 Podium Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        {leaderboards.slice(0, 3).map((coder) => (
+        {sortedUsers.slice(0, 3).map((coder) => (
           <div
             key={coder.rank}
             onClick={() => setSelectedUserModal(coder)}
