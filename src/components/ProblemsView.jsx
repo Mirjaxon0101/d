@@ -371,15 +371,31 @@ export function ProblemsView({ language = 'uz', problemsList = initialProblems, 
                   </div>
                 </div>
 
-                {/* Code Textarea Area */}
-                <div className="flex-1 relative font-mono text-sm">
-                  <textarea
-                    value={userCode}
-                    onChange={(e) => setUserCode(e.target.value)}
-                    placeholder="// Kodingizni shu yerga yozing..."
-                    spellCheck="false"
-                    className="w-full h-full p-4 bg-slate-950 text-emerald-400 font-mono text-xs sm:text-sm focus:outline-none resize-none leading-relaxed border-none"
-                  />
+                {/* Code Textarea Area with Line Numbers and Colorful Editor */}
+                <div className="flex-1 relative font-mono text-xs sm:text-sm flex bg-slate-950 overflow-hidden">
+                  {/* Line Numbers Column */}
+                  <div className="w-10 sm:w-12 py-4 bg-slate-900/80 text-slate-600 text-right pr-2.5 select-none border-r border-slate-800 font-mono text-xs leading-relaxed shrink-0">
+                    {(userCode || '\n').split('\n').map((_, i) => (
+                      <div key={i}>{i + 1}</div>
+                    ))}
+                  </div>
+
+                  {/* Editor Container */}
+                  <div className="relative flex-1 h-full overflow-hidden">
+                    <textarea
+                      value={userCode}
+                      onChange={(e) => setUserCode(e.target.value)}
+                      placeholder={
+                        codeLang === 'python'
+                          ? '# Kodingizni shu yerga yozing...\n# Masalan:\na, b = map(int, input().split())\nprint(a + b)'
+                          : codeLang === 'cpp'
+                          ? '// Kodingizni shu yerga yozing...\n#include <iostream>\nusing namespace std;\n\nint main() {\n    int a, b;\n    cin >> a >> b;\n    cout << a + b;\n    return 0;\n}'
+                          : '// Kodingizni shu yerga yozing...'
+                      }
+                      spellCheck="false"
+                      className="w-full h-full p-4 bg-slate-950 text-slate-100 placeholder-slate-600 font-mono text-xs sm:text-sm focus:outline-none resize-none leading-relaxed border-none selection:bg-blue-600/40"
+                    />
+                  </div>
                 </div>
 
                 {/* Output Console & Submission Feedback Bar */}
