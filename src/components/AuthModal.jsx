@@ -1,21 +1,85 @@
 import React, { useState } from 'react'
 import { X, Lock, Mail, User, ShieldCheck, ArrowRight } from 'lucide-react'
 
-export function AuthModal({ isOpen, onClose, initialMode = 'login', language = 'uz', onRegisterUser }) {
+export function AuthModal({
+  isOpen,
+  onClose,
+  initialMode = 'login',
+  language = 'uz',
+  registeredUsers = [],
+  onRegisterUser,
+  onLoginUser
+}) {
   const [mode, setMode] = useState(initialMode) // 'login' | 'register'
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [errorMsg, setErrorMsg] = useState('')
   const [successMsg, setSuccessMsg] = useState('')
 
   if (!isOpen) return null
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    if (mode === 'register' && onRegisterUser) {
+    setErrorMsg('')
+
+    if (mode === 'login') {
+      const loginIdentifier = email.trim().toLowerCase()
+      const pass = password.trim()
+
+      // Admin Account check
+      if ((loginIdentifier === 'admin' || loginIdentifier === 'admin@bluecontest.uz') && pass === 'qwertyuiop') {
+        const adminUser = {
+          id: 'admin_1',
+          name: 'Admin',
+          rating: 3000,
+          title: 'Administrator',
+          titleColor: 'text-red-500 bg-red-500/10 border-red-500/20',
+          solved: 999,
+          org: 'BlueContest Founder',
+          avatar: '👑'
+        }
+        if (onLoginUser) onLoginUser(adminUser)
+        setSuccessMsg("Admin sifatidaga tizimga kirdingiz!")
+        setTimeout(() => {
+          setSuccessMsg('')
+          setEmail('')
+          setPassword('')
+          onClose()
+        }, 1200)
+        return
+      }
+
+      // Find user from registeredUsers array
+      const matchedUser = registeredUsers.find(
+        u => (u.name.toLowerCase() === loginIdentifier || (u.email && u.email.toLowerCase() === loginIdentifier)) &&
+             (u.password ? u.password === pass : true)
+      )
+
+      if (matchedUser) {
+        if (onLoginUser) onLoginUser(matchedUser)
+        setSuccessMsg("Muvaffaqiyatli tizimga kirdingiz!")
+        setTimeout(() => {
+          setSuccessMsg('')
+          setEmail('')
+          setPassword('')
+          onClose()
+        }, 1200)
+      } else {
+        setErrorMsg("Foydalanuvchi nomi yoki parol xato! Agarda akkauntingiz bo'lmasa, 'Ro'yxatdan o'tish' bo'limidan o'ting.")
+      }
+    } else {
+      // Register Mode
+      if (!username.trim() || !password.trim()) {
+        setErrorMsg("Barcha maydonlarni to'ldiring!")
+        return
+      }
+
       const newUser = {
         id: `u_${Date.now()}`,
-        name: username || 'Yangi_Dasturchi',
+        name: username.trim(),
+        email: email.trim(),
+        password: password.trim(),
         rating: 1500,
         title: 'Newbie',
         titleColor: 'text-slate-500 bg-slate-500/10 border-slate-500/20',
@@ -23,20 +87,17 @@ export function AuthModal({ isOpen, onClose, initialMode = 'login', language = '
         org: 'Mustaqil o\'rganuvchi',
         avatar: '💻'
       }
-      onRegisterUser(newUser)
+
+      if (onRegisterUser) onRegisterUser(newUser)
+      setSuccessMsg("Ro'yxatdan o'tish muvaffaqiyatli yakunlandi! Siz tizimga kirdingiz.")
+      setTimeout(() => {
+        setSuccessMsg('')
+        setUsername('')
+        setEmail('')
+        setPassword('')
+        onClose()
+      }, 1200)
     }
-    setSuccessMsg(
-      mode === 'login'
-        ? "Muvaffaqiyatli tizimga kirdingiz!"
-        : "Ro'yxatdan o'tish muvaffaqiyatli yakunlandi! Siz reyting jadvallariga qo'shildingiz."
-    )
-    setTimeout(() => {
-      setSuccessMsg('')
-      setUsername('')
-      setEmail('')
-      setPassword('')
-      onClose()
-    }, 1500)
   }
 
   return (
@@ -60,6 +121,12 @@ export function AuthModal({ isOpen, onClose, initialMode = 'login', language = '
               : 'O\'zingizning shaxsiy profilingizni yarating va reytingizni oshirib boring.'}
           </p>
         </div>
+
+        {errorMsg && (
+          <div className="p-3 rounded-xl bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-800 text-red-600 dark:text-red-400 font-bold text-xs text-center">
+            {errorMsg}
+          </div>
+        )}
 
         {successMsg ? (
           <div className="p-4 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 text-emerald-700 dark:text-emerald-300 font-bold text-center text-sm">

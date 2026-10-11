@@ -15,7 +15,10 @@ export default function App() {
   const [language, setLanguage] = useState('uz')
   const [searchQuery, setSearchQuery] = useState('')
 
-  // Dynamic Leaderboard Users state (initialized empty so only registered users appear)
+  // Current Logged-in User State
+  const [currentUser, setCurrentUser] = useState(null)
+
+  // Dynamic Leaderboard Users state
   const [users, setUsers] = useState([])
 
   // Dynamic Problems & Contests state
@@ -84,6 +87,8 @@ export default function App() {
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
         onOpenAuth={handleOpenAuth}
+        currentUser={currentUser}
+        onLogout={() => setCurrentUser(null)}
       />
 
       {/* Main Dynamic View Content */}
@@ -146,8 +151,13 @@ export default function App() {
         onClose={() => setAuthModalOpen(false)}
         initialMode={authMode}
         language={language}
+        registeredUsers={users}
         onRegisterUser={(newUser) => {
           setUsers(prev => [newUser, ...prev])
+          setCurrentUser(newUser)
+        }}
+        onLoginUser={(user) => {
+          setCurrentUser(user)
         }}
       />
 
