@@ -19,7 +19,7 @@ import {
 } from 'lucide-react'
 import { initialProblems } from '../data/problemsData'
 
-export function ProblemsView({ language = 'uz', onSelectProblem, activeProblemModal, onCloseModal }) {
+export function ProblemsView({ language = 'uz', problemsList = initialProblems, onSelectProblem, activeProblemModal, onCloseModal }) {
   const [searchTerm, setSearchTerm] = useState('')
   const [difficultyFilter, setDifficultyFilter] = useState('Barchasi')
   const [tagFilter, setTagFilter] = useState('Barchasi')
@@ -37,7 +37,7 @@ export function ProblemsView({ language = 'uz', onSelectProblem, activeProblemMo
   React.useEffect(() => {
     if (selectedProblem) {
       setUserCode('')
-      setCustomInput(selectedProblem.sampleInput)
+      setCustomInput(selectedProblem.sampleInput || '')
       setCustomOutput('')
       setJudgeStatus(null)
     }
@@ -54,12 +54,12 @@ export function ProblemsView({ language = 'uz', onSelectProblem, activeProblemMo
     if (onCloseModal) onCloseModal()
   }
 
-  const allTags = ['Barchasi', 'Boshlangʻich', 'Math', 'Binary Search', 'Algorithms', 'Dynamic Programming', 'Strings', 'Arrays']
+  const allTags = ['Barchasi', 'Boshlangʻich', 'Math', 'Binary Search', 'Algorithms', 'Dynamic Programming', 'Strings', 'Arrays', 'Graphs', 'Trees']
 
-  const filteredProblems = initialProblems.filter(prob => {
+  const filteredProblems = problemsList.filter(prob => {
     const matchesSearch = prob.title.toLowerCase().includes(searchTerm.toLowerCase()) || prob.id.toString() === searchTerm.trim()
     const matchesDifficulty = difficultyFilter === 'Barchasi' || prob.difficulty === difficultyFilter
-    const matchesTag = tagFilter === 'Barchasi' || prob.tags.includes(tagFilter)
+    const matchesTag = tagFilter === 'Barchasi' || (prob.tags && prob.tags.includes(tagFilter))
     return matchesSearch && matchesDifficulty && matchesTag
   })
 
@@ -77,7 +77,7 @@ export function ProblemsView({ language = 'uz', onSelectProblem, activeProblemMo
           setCustomOutput('Xatolik: yetarli son kiritilmadi')
         }
       } else {
-        setCustomOutput(selectedProblem.sampleOutput)
+        setCustomOutput(selectedProblem.sampleOutput || '15')
       }
     }, 600)
   }
@@ -129,7 +129,7 @@ export function ProblemsView({ language = 'uz', onSelectProblem, activeProblemMo
         <div className="flex items-center space-x-3">
           <div className="px-4 py-2 rounded-xl bg-blue-50 dark:bg-blue-950/50 text-blue-600 dark:text-blue-400 font-bold text-xs flex items-center gap-2 border border-blue-200 dark:border-blue-800">
             <Sparkles className="w-4 h-4" />
-            <span>Jami: {initialProblems.length} ta masala</span>
+            <span>Jami: {problemsList.length} ta masala</span>
           </div>
         </div>
       </div>
@@ -211,7 +211,7 @@ export function ProblemsView({ language = 'uz', onSelectProblem, activeProblemMo
                           {prob.title}
                         </span>
                         <div className="flex items-center space-x-1.5 mt-1">
-                          {prob.tags.map((tag, idx) => (
+                          {prob.tags && prob.tags.map((tag, idx) => (
                             <span key={idx} className="text-[10px] px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 font-medium">
                               {tag}
                             </span>

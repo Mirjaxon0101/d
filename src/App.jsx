@@ -5,13 +5,44 @@ import { ProblemsView } from './components/ProblemsView'
 import { ContestsView } from './components/ContestsView'
 import { RatingsView } from './components/RatingsView'
 import { DiscussionsView } from './components/DiscussionsView'
+import { AdminPanel } from './components/AdminPanel'
 import { AuthModal } from './components/AuthModal'
+import { initialProblems } from './data/problemsData'
 
 export default function App() {
-  const [currentTab, setCurrentTab] = useState('home') // 'home' | 'problems' | 'contests' | 'ratings' | 'discussions'
+  const [currentTab, setCurrentTab] = useState('home') // 'home' | 'problems' | 'contests' | 'ratings' | 'discussions' | 'admin'
   const [darkMode, setDarkMode] = useState(true)
   const [language, setLanguage] = useState('uz')
   const [searchQuery, setSearchQuery] = useState('')
+
+  // Dynamic Problems & Contests state
+  const [problems, setProblems] = useState(initialProblems)
+  const [contests, setContests] = useState([
+    {
+      id: 'c101',
+      title: 'BlueContest Round #98 (Div 2 + Div 1)',
+      type: 'Rated',
+      status: 'Upcoming',
+      startTime: '2025-03-20 19:30',
+      duration: '02:30:00',
+      participantsCount: 1420,
+      description: 'Sport dasturlashi bo\'yicha navbatdagi reytingli musobaqa.',
+      organizer: 'BlueContest Team',
+      rules: 'ICPC qoidalari'
+    },
+    {
+      id: 'c102',
+      title: 'Respublika Saralash Musobaqasi IOI 2025 - 2-Bosqich',
+      type: 'Official',
+      status: 'Upcoming',
+      startTime: '2025-03-28 10:00',
+      duration: '05:00:00',
+      participantsCount: 380,
+      description: 'Xalqaro Informatika Olimpiadasiga saralash bosqichining rasmiy musobaqasi.',
+      organizer: 'Raqamli Texnologiyalar Vazirligi',
+      rules: 'IOI qoidalari'
+    }
+  ])
 
   // Modal active targets
   const [activeProblemModal, setActiveProblemModal] = useState(null)
@@ -66,6 +97,7 @@ export default function App() {
         {currentTab === 'problems' && (
           <ProblemsView
             language={language}
+            problemsList={problems}
             activeProblemModal={activeProblemModal}
             onCloseModal={() => setActiveProblemModal(null)}
           />
@@ -74,6 +106,7 @@ export default function App() {
         {currentTab === 'contests' && (
           <ContestsView
             language={language}
+            contestsList={contests}
             activeContestModal={activeContestModal}
             onCloseModal={() => setActiveContestModal(null)}
           />
@@ -85,6 +118,16 @@ export default function App() {
 
         {currentTab === 'discussions' && (
           <DiscussionsView language={language} />
+        )}
+
+        {currentTab === 'admin' && (
+          <AdminPanel
+            language={language}
+            problems={problems}
+            setProblems={setProblems}
+            contests={contests}
+            setContests={setContests}
+          />
         )}
       </main>
 

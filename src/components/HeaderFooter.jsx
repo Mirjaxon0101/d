@@ -15,7 +15,8 @@ import {
   X,
   ChevronDown,
   Terminal,
-  LogIn
+  LogIn,
+  ShieldAlert
 } from 'lucide-react'
 
 export function Navbar({
@@ -38,6 +39,7 @@ export function Navbar({
     { id: 'contests', label: { uz: 'Musobaqalar', ru: 'Соревнования', en: 'Contests' }, icon: Trophy },
     { id: 'ratings', label: { uz: 'Reyting', ru: 'Рейтинг', en: 'Rankings' }, icon: BarChart2 },
     { id: 'discussions', label: { uz: 'Muhokama', ru: 'Обсуждения', en: 'Discussions' }, icon: MessageSquare },
+    { id: 'admin', label: { uz: 'Admin Panel', ru: 'Админ', en: 'Admin' }, icon: ShieldAlert },
   ]
 
   const languages = [
