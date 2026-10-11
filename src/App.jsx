@@ -10,17 +10,69 @@ import { AuthModal } from './components/AuthModal'
 import { UserSettingsModal } from './components/UserSettingsModal'
 import { initialProblems } from './data/problemsData'
 
+export function getUserTitleInfo(solvedCount) {
+  if (solvedCount >= 200) {
+    return { title: 'Hacker Programmer', titleColor: 'text-emerald-500 bg-emerald-500/10 border-emerald-500/20' }
+  } else if (solvedCount >= 140) {
+    return { title: 'Grandmaster', titleColor: 'text-red-500 bg-red-500/10 border-red-500/20' }
+  } else if (solvedCount >= 80) {
+    return { title: 'High Master', titleColor: 'text-indigo-500 bg-indigo-500/10 border-indigo-500/20' }
+  } else if (solvedCount >= 40) {
+    return { title: 'Master', titleColor: 'text-purple-500 bg-purple-500/10 border-purple-500/20' }
+  } else if (solvedCount >= 10) {
+    return { title: 'Specialist', titleColor: 'text-cyan-500 bg-cyan-500/10 border-cyan-500/20' }
+  } else if (solvedCount >= 1) {
+    return { title: 'Pupil', titleColor: 'text-slate-400 bg-slate-400/10 border-slate-400/20' }
+  }
+  return { title: 'Newbie', titleColor: 'text-slate-500 bg-slate-500/10 border-slate-500/20' }
+}
+
 export default function App() {
   const [currentTab, setCurrentTab] = useState('home') // 'home' | 'problems' | 'contests' | 'ratings' | 'discussions' | 'admin'
   const [darkMode, setDarkMode] = useState(true)
   const [language, setLanguage] = useState('uz')
   const [searchQuery, setSearchQuery] = useState('')
 
-  // Current Logged-in User State
-  const [currentUser, setCurrentUser] = useState(null)
+  // Persistent Leaderboard Users state
+  const [users, setUsers] = useState(() => {
+    try {
+      const savedUsers = localStorage.getItem('bluecontest_users')
+      return savedUsers ? JSON.parse(savedUsers) : []
+    } catch {
+      return []
+    }
+  })
 
-  // Dynamic Leaderboard Users state
-  const [users, setUsers] = useState([])
+  // Persistent Current Logged-in User State
+  const [currentUser, setCurrentUser] = useState(() => {
+    try {
+      const savedUser = localStorage.getItem('bluecontest_current_user')
+      return savedUser ? JSON.parse(savedUser) : null
+    } catch {
+      return null
+    }
+  })
+
+  // Save users & currentUser to localStorage on change
+  React.useEffect(() => {
+    try {
+      localStorage.setItem('bluecontest_users', JSON.stringify(users))
+    } catch (e) {
+      console.error("Failed to save users", e)
+    }
+  }, [users])
+
+  React.useEffect(() => {
+    try {
+      if (currentUser) {
+        localStorage.setItem('bluecontest_current_user', JSON.stringify(currentUser))
+      } else {
+        localStorage.removeItem('bluecontest_current_user')
+      }
+    } catch (e) {
+      console.error("Failed to save current user", e)
+    }
+  }, [currentUser])
 
   // Dynamic Problems & Contests state
   const [problems, setProblems] = useState(initialProblems)
@@ -114,6 +166,30 @@ export default function App() {
             onCloseModal={() => setActiveProblemModal(null)}
             currentUser={currentUser}
             onOpenAuth={handleOpenAuth}
+            onProblemSolved={(points) => {
+              if (!currentUser) return
+              const newSolved = (currentUser.solved || 0) + 1
+              const newRating = (currentUser.rating || 1500) + (points || 15)
+              const titleInfo = getUserTitleInfo(newSolved)
+
+              const updatedUser = {
+                ...currentUser,
+                solved: newSolved,
+                rating: newRating,
+                title: titleInfo.title,
+                titleColor: titleInfo.titleColor
+              }
+
+              setCurrentUser(updatedUser)
+              setUsers(prev => {
+                const exists = prev.some(u => u.id === updatedUser.id)
+                if (exists) {
+                  return prev.map(u => u.id === updatedUser.id ? updatedUser : u)
+                } else {
+                  return [updatedUser, ...prev]
+                }
+              })
+            }}
           />
         )}
 

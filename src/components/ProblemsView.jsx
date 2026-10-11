@@ -26,7 +26,8 @@ export function ProblemsView({
   activeProblemModal,
   onCloseModal,
   currentUser,
-  onOpenAuth
+  onOpenAuth,
+  onProblemSolved
 }) {
   const [searchTerm, setSearchTerm] = useState('')
   const [difficultyFilter, setDifficultyFilter] = useState('Barchasi')
@@ -102,6 +103,9 @@ export function ProblemsView({
           memory: '8.4 MB',
           passedTests: '10 / 10'
         })
+        if (onProblemSolved) {
+          onProblemSolved(selectedProblem?.points || 15)
+        }
       } else {
         setJudgeStatus({
           status: 'Wrong Answer',
