@@ -60,13 +60,15 @@ export function Navbar({
           <div className="flex items-center space-x-3 xl:space-x-6">
             <button
               onClick={() => setCurrentTab('home')}
-              className="flex items-center space-x-2 focus:outline-none group shrink-0"
+              className="flex items-center space-x-2.5 focus:outline-none group shrink-0"
             >
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center text-white shadow-md shadow-blue-500/20 group-hover:scale-105 transition-transform">
-                <Terminal className="w-5 h-5 stroke-[2.5]" />
-              </div>
+              <img
+                src="/logo.png"
+                alt="BlueContest Logo"
+                className="w-9 h-9 object-contain group-hover:scale-105 transition-transform"
+              />
               <div className="flex flex-col text-left">
-                <span className="text-lg font-black tracking-tight bg-gradient-to-r from-blue-600 via-indigo-600 to-sky-500 dark:from-blue-400 dark:via-indigo-400 dark:to-sky-400 bg-clip-text text-transparent">
+                <span className="text-lg font-black tracking-tight bg-gradient-to-r from-blue-500 via-indigo-400 to-sky-400 bg-clip-text text-transparent">
                   BlueContest
                 </span>
                 <span className="text-[9px] font-semibold tracking-widest text-slate-400 dark:text-slate-500 -mt-1 uppercase">
@@ -324,9 +326,7 @@ export function Footer({ language = 'uz' }) {
           {/* Column 1: Brand Info */}
           <div className="space-y-4 md:col-span-1">
             <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white">
-                <Terminal className="w-5 h-5 stroke-[2.5]" />
-              </div>
+              <img src="/logo.png" alt="BlueContest Logo" className="w-8 h-8 object-contain" />
               <span className="text-lg font-bold text-slate-900 dark:text-white">BlueContest</span>
             </div>
             <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">

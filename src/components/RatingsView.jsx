@@ -107,7 +107,7 @@ export function RatingsView({ language = 'uz', users = [], setUsers }) {
             <thead>
               <tr className="bg-slate-50 dark:bg-slate-900/60 border-b border-slate-200 dark:border-slate-800 text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
                 <th className="py-3.5 px-4 text-center w-16">O'rin</th>
-                <th className="py-3.5 px-6">Dasturchi</th>
+                <th className="py-3.5 px-6">Dasturchi (Username)</th>
                 <th className="py-3.5 px-4">Unvon (Title)</th>
                 <th className="py-3.5 px-6">Tashkilot / O'quv maskani</th>
                 <th className="py-3.5 px-4">Yechilgan</th>
@@ -115,44 +115,64 @@ export function RatingsView({ language = 'uz', users = [], setUsers }) {
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 dark:divide-slate-800 text-sm">
-              {filteredCoders.map((coder) => (
-                <tr
-                  key={coder.rank}
-                  onClick={() => setSelectedUserModal(coder)}
-                  className="hover:bg-slate-50/80 dark:hover:bg-slate-700/30 transition-colors cursor-pointer group"
-                >
-                  <td className="py-4 px-4 text-center font-mono font-bold text-slate-500">
-                    #{coder.rank}
-                  </td>
+              {filteredCoders.length > 0 ? (
+                filteredCoders.map((coder) => (
+                  <tr
+                    key={coder.id || coder.rank}
+                    onClick={() => setSelectedUserModal(coder)}
+                    className="hover:bg-slate-50/80 dark:hover:bg-slate-700/30 transition-colors cursor-pointer group"
+                  >
+                    <td className="py-4 px-4 text-center font-mono font-bold text-slate-500">
+                      #{coder.rank}
+                    </td>
 
-                  <td className="py-4 px-6">
-                    <div className="flex items-center space-x-3">
-                      <span className="text-xl">{coder.avatar}</span>
-                      <span className="font-bold text-slate-900 dark:text-slate-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                        {coder.name}
+                    <td className="py-4 px-6">
+                      <div className="flex items-center space-x-3">
+                        <span className="text-xl">{coder.avatar || '💻'}</span>
+                        <span className="font-bold text-slate-900 dark:text-slate-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                          {coder.name}
+                        </span>
+                      </div>
+                    </td>
+
+                    <td className="py-4 px-4">
+                      <span className={`px-2 py-0.5 rounded text-[11px] font-extrabold border ${coder.titleColor || 'text-blue-500 bg-blue-500/10 border-blue-500/20'}`}>
+                        {coder.title || 'Coder'}
                       </span>
-                    </div>
-                  </td>
+                    </td>
 
-                  <td className="py-4 px-4">
-                    <span className={`px-2 py-0.5 rounded text-[11px] font-extrabold border ${coder.titleColor}`}>
-                      {coder.title}
-                    </span>
-                  </td>
+                    <td className="py-4 px-6 text-slate-600 dark:text-slate-400 text-xs font-medium">
+                      {coder.org || "Mustaqil O'rganuvchi"}
+                    </td>
 
-                  <td className="py-4 px-6 text-slate-600 dark:text-slate-400 text-xs font-medium">
-                    {coder.org}
-                  </td>
+                    <td className="py-4 px-4 font-mono font-semibold text-emerald-600 dark:text-emerald-400">
+                      {coder.solved || 0}
+                    </td>
 
-                  <td className="py-4 px-4 font-mono font-semibold text-emerald-600 dark:text-emerald-400">
-                    {coder.solved}
-                  </td>
-
-                  <td className="py-4 px-6 text-right font-mono font-extrabold text-slate-900 dark:text-white text-base">
-                    {coder.rating}
+                    <td className="py-4 px-6 text-right font-mono font-extrabold text-slate-900 dark:text-white text-base">
+                      {coder.rating}
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan={6} className="py-12 text-center text-slate-400 text-sm">
+                    {searchCoder ? (
+                      <div className="space-y-2">
+                        <p className="font-bold">"{searchCoder}" bo'yicha hech qanday dasturchi topilmadi.</p>
+                        <button
+                          onClick={() => setSearchCoder('')}
+                          className="text-xs text-blue-500 hover:underline font-semibold"
+                        >
+                          Qidiruvni tozalash
+                        </button>
+                      </div>
+                    ) : (
+                      <p>Hozircha reyting jadvalida foydalanuvchilar mavjud emas. Birinchi bo'lib ro'yxatdan o'ting!</p>
+                    )}
                   </td>
                 </tr>
-              ))}
+              )}
             </tbody>
           </table>
         </div>
