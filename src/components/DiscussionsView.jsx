@@ -13,6 +13,7 @@ import {
   Search,
   X
 } from 'lucide-react'
+import AvatarWithFrame from './AvatarWithFrame'
 
 export function DiscussionsView({ language = 'uz' }) {
   const [posts, setPosts] = useState([
@@ -141,6 +142,11 @@ export function DiscussionsView({ language = 'uz' }) {
           >
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-3">
+                <AvatarWithFrame
+                  avatar={post.avatar || '👨‍💻'}
+                  title={post.badge || 'Newbie'}
+                  size="sm"
+                />
                 <span className="font-bold text-sm text-slate-900 dark:text-slate-100">
                   {post.author}
                 </span>

@@ -15,6 +15,7 @@ import {
   Code,
   CheckCircle
 } from 'lucide-react'
+import AvatarWithFrame from './AvatarWithFrame'
 
 export function HomeView({
   language = 'uz',
@@ -305,7 +306,11 @@ export function HomeView({
                       }`}>
                         #{coder.rank}
                       </span>
-                      <span className="text-lg">{coder.avatar}</span>
+                      <AvatarWithFrame
+                        avatar={coder.avatar || '💻'}
+                        title={coder.badge || 'Newbie'}
+                        size="sm"
+                      />
                       <div className="flex flex-col">
                         <span className="font-bold text-slate-800 dark:text-slate-200 hover:text-blue-600 transition-colors cursor-pointer">
                           {coder.name}

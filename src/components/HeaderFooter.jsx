@@ -18,6 +18,7 @@ import {
   LogIn,
   ShieldAlert
 } from 'lucide-react'
+import AvatarWithFrame from './AvatarWithFrame'
 
 export function Navbar({
   currentTab,
@@ -104,7 +105,7 @@ export function Navbar({
           {/* Search, Utilities & Auth / User Profile */}
           <div className="hidden lg:flex items-center space-x-2 shrink-0">
             {/* Quick Search Bar */}
-            <div className="relative w-36 xl:w-48">
+            <div className="relative w-28 xl:w-44">
               <Search className="w-3.5 h-3.5 absolute left-2.5 top-1/2 -translate-y-1/2 text-slate-400" />
               <input
                 type="text"
@@ -168,7 +169,11 @@ export function Navbar({
                     onClick={() => setUserMenuOpen(!userMenuOpen)}
                     className="flex items-center space-x-2 px-2.5 py-1 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
                   >
-                    <span className="text-base">{currentUser.avatar || '👨‍💻'}</span>
+                    <AvatarWithFrame
+                      avatar={currentUser.avatar || '👨‍💻'}
+                      title={currentUser.title || 'Newbie'}
+                      size="sm"
+                    />
                     <div className="flex flex-col text-left">
                       <span className="text-xs font-bold text-slate-800 dark:text-slate-100 leading-tight">
                         {currentUser.name}

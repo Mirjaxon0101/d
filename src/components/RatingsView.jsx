@@ -14,6 +14,7 @@ import {
   Globe,
   Code
 } from 'lucide-react'
+import AvatarWithFrame from './AvatarWithFrame'
 
 export function RatingsView({ language = 'uz', users = [], setUsers }) {
   const [searchCoder, setSearchCoder] = useState('')
@@ -74,8 +75,12 @@ export function RatingsView({ language = 'uz', users = [], setUsers }) {
             }`}
           >
             <div className="relative">
-              <span className="text-4xl">{coder.avatar}</span>
-              <span className={`absolute -top-2 -right-2 w-7 h-7 rounded-full flex items-center justify-center font-black text-xs text-white ${
+              <AvatarWithFrame
+                avatar={coder.avatar || '👨‍💻'}
+                title={coder.title || 'Newbie'}
+                size="lg"
+              />
+              <span className={`absolute -top-2 -right-2 w-7 h-7 rounded-full flex items-center justify-center font-black text-xs text-white z-20 ${
                 coder.rank === 1 ? 'bg-amber-500' : coder.rank === 2 ? 'bg-slate-400' : 'bg-amber-700'
               }`}>
                 #{coder.rank}
@@ -129,7 +134,11 @@ export function RatingsView({ language = 'uz', users = [], setUsers }) {
 
                     <td className="py-4 px-6">
                       <div className="flex items-center space-x-3">
-                        <span className="text-xl">{coder.avatar || '💻'}</span>
+                        <AvatarWithFrame
+                          avatar={coder.avatar || '💻'}
+                          title={coder.title || 'Newbie'}
+                          size="sm"
+                        />
                         <span className="font-bold text-slate-900 dark:text-slate-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                           {coder.name}
                         </span>
@@ -186,7 +195,11 @@ export function RatingsView({ language = 'uz', users = [], setUsers }) {
 
             <div className="flex items-start justify-between">
               <div className="flex items-center space-x-4">
-                <span className="text-4xl">{selectedUserModal.avatar}</span>
+                <AvatarWithFrame
+                  avatar={selectedUserModal.avatar || '👨‍💻'}
+                  title={selectedUserModal.title || 'Newbie'}
+                  size="lg"
+                />
                 <div>
                   <h2 className="text-xl font-bold text-slate-900 dark:text-white">
                     {selectedUserModal.name}

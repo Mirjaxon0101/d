@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { X, User, Lock, Building, Key, Check, Upload, Image as ImageIcon } from 'lucide-react'
+import AvatarWithFrame from './AvatarWithFrame'
 
 export function UserSettingsModal({ isOpen, onClose, currentUser, onUpdateUser }) {
   if (!isOpen || !currentUser) return null
@@ -110,13 +111,11 @@ export function UserSettingsModal({ isOpen, onClose, currentUser, onUpdateUser }
           <div className="space-y-2">
             <label className="block text-xs font-bold text-slate-500 uppercase">Avatar (Profil Rasmi)</label>
             <div className="flex items-center space-x-4">
-              <div className="w-16 h-16 rounded-2xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center overflow-hidden shrink-0">
-                {avatar.startsWith('data:') || avatar.startsWith('http') ? (
-                  <img src={avatar} alt="Avatar" className="w-full h-full object-cover" />
-                ) : (
-                  <span className="text-3xl">{avatar}</span>
-                )}
-              </div>
+              <AvatarWithFrame
+                avatar={avatar}
+                title={currentUser.title || 'Newbie'}
+                size="lg"
+              />
 
               <div className="flex-1 space-y-2">
                 <label className="cursor-pointer inline-flex items-center space-x-2 px-3 py-1.5 rounded-xl bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 text-xs font-bold border border-blue-200 dark:border-blue-800 hover:bg-blue-100 transition-colors">
