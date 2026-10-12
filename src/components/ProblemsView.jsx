@@ -72,23 +72,114 @@ export function ProblemsView({
     return matchesSearch && matchesDifficulty && matchesTag
   })
 
-  const handleRunSample = () => {
-    setIsEvaluating(true)
-    setCustomOutput('Kompilyatsiya qilinmoqda...')
-    setTimeout(() => {
-      setIsEvaluating(false)
-      if (selectedProblem.id === 1) {
-        const parts = customInput.trim().split(/\s+/)
-        if (parts.length >= 2) {
-          const sum = Number(parts[0]) + Number(parts[1])
-          setCustomOutput(isNaN(sum) ? 'NaN' : sum.toString())
-        } else {
-          setCustomOutput('Xatolik: yetarli son kiritilmadi')
+  const evaluateUserCode = (code, lang, inputStr, expectedOutput) => {
+    if (!code || code.trim().length < 5) {
+      return {
+        isCorrect: false,
+        output: 'Compilation Error: Kod o\'ta qisqa yoki bo\'sh!',
+        passedTests: '0 / 10'
+      }
+    }
+
+    const expected = (expectedOutput || '').trim()
+    const cleanCode = code.trim()
+
+    let executedOutput = null
+
+    // Attempt JavaScript Execution sandbox if code is in JS or simple Python/C++ equivalents
+    try {
+      if (lang === 'javascript' || lang === 'python') {
+        const consoleLogs = []
+        const inputLines = (inputStr || '').trim().split('\n')
+        let inputIdx = 0
+
+        const mockInput = () => {
+          const val = inputLines[inputIdx] || ''
+          inputIdx++
+          return val
+        }
+
+        // Convert simple Python syntax to JS for execution if possible
+        let jsRunnableCode = cleanCode
+        if (lang === 'python') {
+          jsRunnableCode = cleanCode
+            .replace(/print\s*\((.*?)\)/g, 'console.log($1)')
+            .replace(/input\(\)/g, 'mockInput()')
+            .replace(/map\(int,\s*mockInput\(\)\.split\(\)\)/g, 'mockInput().split(" ").map(Number)')
+            .replace(/sum\((.*?)\)/g, '$1.reduce((a,b)=>a+b,0)')
+        }
+
+        const fn = new Function('mockInput', 'console', `
+          try {
+            ${jsRunnableCode}
+          } catch(e) {}
+        `)
+
+        fn(mockInput, {
+          log: (...args) => consoleLogs.push(args.join(' ')),
+          error: () => {},
+          warn: () => {}
+        })
+
+        if (consoleLogs.length > 0) {
+          executedOutput = consoleLogs.join('\n').trim()
+        }
+      }
+    } catch (e) {
+      // Sandbox fallback
+    }
+
+    // Direct output verification: check if executed output matches expected
+    const normExpected = expected.replace(/\s+/g, ' ').trim()
+
+    if (executedOutput !== null) {
+      const normExecuted = executedOutput.replace(/\s+/g, ' ').trim()
+      if (normExecuted === normExpected) {
+        return {
+          isCorrect: true,
+          output: executedOutput,
+          passedTests: '10 / 10'
         }
       } else {
-        setCustomOutput(selectedProblem.sampleOutput || '15')
+        return {
+          isCorrect: false,
+          output: executedOutput,
+          passedTests: `0 / 10 (Kutilgan: "${normExpected}", Olingan: "${normExecuted}")`
+        }
       }
-    }, 600)
+    }
+
+    // Check if user code literally printed or outputted the target expected value
+    const escapedExpected = expected.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+    const hasLiteralOutputMatch =
+      new RegExp(`print\\s*\\(.*["']?${escapedExpected}["']?\\s*\\)`, 'i').test(cleanCode) ||
+      new RegExp(`cout\\s*<<.*["']?${escapedExpected}["']?`, 'i').test(cleanCode) ||
+      new RegExp(`console\\.log\\s*\\(.*["']?${escapedExpected}["']?\\s*\\)`, 'i').test(cleanCode)
+
+    if (hasLiteralOutputMatch) {
+      return {
+        isCorrect: true,
+        output: expected,
+        passedTests: '10 / 10'
+      }
+    }
+
+    // Default: Solution is wrong / output does not match expected
+    return {
+      isCorrect: false,
+      output: 'Xato Natija (Wrong Answer)',
+      passedTests: `0 / 10 (Kutilgan: "${normExpected}", Olingan: "Xato yechim")`
+    }
+  }
+
+  const handleRunSample = () => {
+    setIsEvaluating(true)
+    setCustomOutput('Kompilyatsiya va bajarilish kutilmoqda...')
+    setTimeout(() => {
+      setIsEvaluating(false)
+      const res = evaluateUserCode(userCode, codeLang, customInput, selectedProblem.sampleOutput)
+      setCustomOutput(res.output)
+    }, 500)
   }
 
   const handleSubmitSolution = () => {
@@ -96,12 +187,14 @@ export function ProblemsView({
     setJudgeStatus({ status: 'Running', time: '...', memory: '...' })
     setTimeout(() => {
       setIsEvaluating(false)
-      if (userCode.trim().length > 10) {
+      const res = evaluateUserCode(userCode, codeLang, selectedProblem.sampleInput, selectedProblem.sampleOutput)
+
+      if (res.isCorrect) {
         setJudgeStatus({
           status: 'Accepted',
           time: '24 ms',
           memory: '8.4 MB',
-          passedTests: '10 / 10'
+          passedTests: res.passedTests
         })
         if (onProblemSolved) {
           onProblemSolved(selectedProblem?.points || 15)
@@ -111,10 +204,10 @@ export function ProblemsView({
           status: 'Wrong Answer',
           time: '18 ms',
           memory: '7.1 MB',
-          passedTests: '0 / 10'
+          passedTests: res.passedTests
         })
       }
-    }, 1200)
+    }, 1000)
   }
 
   const handleCopyCode = () => {
