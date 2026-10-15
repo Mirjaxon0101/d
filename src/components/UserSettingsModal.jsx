@@ -30,7 +30,7 @@ export function UserSettingsModal({ isOpen, onClose, currentUser, onUpdateUser }
     }
   }
 
-  const handleSave = (e) => {
+  const handleSave = async (e) => {
     e.preventDefault()
     setErrorMsg('')
     setSuccessMsg('')
@@ -53,7 +53,7 @@ export function UserSettingsModal({ isOpen, onClose, currentUser, onUpdateUser }
       updatedPassword = newPassword
     }
 
-    const updatedUser = {
+    const updatedPayload = {
       ...currentUser,
       name: name.trim() || currentUser.name,
       org: org.trim() || currentUser.org,
@@ -61,7 +61,22 @@ export function UserSettingsModal({ isOpen, onClose, currentUser, onUpdateUser }
       password: updatedPassword
     }
 
-    if (onUpdateUser) onUpdateUser(updatedUser)
+    // Try sync with backend API
+    try {
+      const res = await fetch(`http://localhost:5000/api/users/${currentUser.id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(updatedPayload)
+      })
+      if (res.ok) {
+        const data = await res.json()
+        if (data.user && onUpdateUser) {
+          onUpdateUser(data.user)
+        }
+      }
+    } catch (err) {
+      if (onUpdateUser) onUpdateUser(updatedPayload)
+    }
 
     setSuccessMsg("Sozlamalar muvaffaqiyatli saqlandi!")
     setTimeout(() => {

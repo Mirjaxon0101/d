@@ -33,7 +33,7 @@ export default function App() {
   const [language, setLanguage] = useState('uz')
   const [searchQuery, setSearchQuery] = useState('')
 
-  // Persistent Leaderboard Users state
+  // Central DB + Local Storage Users state
   const [users, setUsers] = useState(() => {
     try {
       const savedUsers = localStorage.getItem('bluecontest_users')
@@ -52,6 +52,34 @@ export default function App() {
       return null
     }
   })
+
+  // Fetch central database users on load
+  const fetchUsers = async () => {
+    try {
+      const res = await fetch('http://localhost:5000/api/users')
+      if (res.ok) {
+        const data = await res.json()
+        if (Array.isArray(data) && data.length > 0) {
+          setUsers(data)
+          localStorage.setItem('bluecontest_users', JSON.stringify(data))
+
+          // Sync active currentUser if updated in DB
+          if (currentUser) {
+            const synced = data.find(u => u.id === currentUser.id || u.name.toLowerCase() === currentUser.name.toLowerCase())
+            if (synced) {
+              setCurrentUser(synced)
+            }
+          }
+        }
+      }
+    } catch (e) {
+      console.log('Central backend offline, using local storage fallback')
+    }
+  }
+
+  React.useEffect(() => {
+    fetchUsers()
+  }, [])
 
   // Save users & currentUser to localStorage on change
   React.useEffect(() => {
@@ -166,10 +194,31 @@ export default function App() {
             onCloseModal={() => setActiveProblemModal(null)}
             currentUser={currentUser}
             onOpenAuth={handleOpenAuth}
-            onProblemSolved={(points) => {
+            onProblemSolved={async (points, problemId) => {
               if (!currentUser) return
+
+              // Backend API call
+              try {
+                const res = await fetch(`http://localhost:5000/api/users/${currentUser.id}/solve`, {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({ points: points || 15, problemId })
+                })
+                if (res.ok) {
+                  const data = await res.json()
+                  if (data.user) {
+                    setCurrentUser(data.user)
+                    setUsers(prev => prev.map(u => u.id === data.user.id ? data.user : u))
+                    return
+                  }
+                }
+              } catch (e) {
+                console.log('Backend sync offline, using local state update')
+              }
+
+              // Local fallback
               const newSolved = (currentUser.solved || 0) + 1
-              const newRating = (currentUser.rating || 1500) + (points || 15)
+              const newRating = (currentUser.rating || 1200) + (points || 15)
               const titleInfo = getUserTitleInfo(newSolved)
 
               const updatedUser = {

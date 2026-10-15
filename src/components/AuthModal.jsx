@@ -19,25 +19,71 @@ export function AuthModal({
 
   if (!isOpen) return null
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     setErrorMsg('')
 
+    const targetUsername = (mode === 'register' ? username : email).trim()
+    const targetPassword = password.trim()
+
+    // Try central backend API
+    try {
+      const res = await fetch('http://localhost:5000/api/auth', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          action: mode,
+          username: targetUsername,
+          email: email.trim(),
+          password: targetPassword,
+          org: 'Mustaqil o\'rganuvchi',
+          avatar: '💻'
+        })
+      })
+
+      const data = await res.json()
+
+      if (!res.ok || data.error) {
+        setErrorMsg(data.error || "Tizimda xatolik yuz berdi!")
+        return
+      }
+
+      if (data.user) {
+        if (mode === 'register' && onRegisterUser) {
+          onRegisterUser(data.user)
+        } else if (mode === 'login' && onLoginUser) {
+          onLoginUser(data.user)
+        }
+
+        setSuccessMsg(mode === 'register' ? "Ro'yxatdan o'tish muvaffaqiyatli yakunlandi!" : "Muvaffaqiyatli tizimga kirdingiz!")
+        setTimeout(() => {
+          setSuccessMsg('')
+          setUsername('')
+          setEmail('')
+          setPassword('')
+          onClose()
+        }, 1200)
+        return
+      }
+    } catch (e) {
+      console.log('Central backend offline, attempting local login fallback')
+    }
+
+    // Local fallback logic
     if (mode === 'login') {
-      const loginIdentifier = email.trim().toLowerCase()
-      const pass = password.trim()
+      const loginIdentifier = targetUsername.toLowerCase()
 
       // Admin Account check
-      if ((loginIdentifier === 'admin' || loginIdentifier === 'admin@bluecontest.uz') && pass === 'qwertyuiop') {
+      if ((loginIdentifier === 'admin' || loginIdentifier === 'admin@bluecontest.uz') && targetPassword === 'qwertyuiop') {
         const adminUser = {
           id: 'admin_1',
           name: 'Admin',
           rating: 3000,
-          title: 'Administrator',
+          title: 'Hacker Programmer',
           titleColor: 'text-red-500 bg-red-500/10 border-red-500/20',
           solved: 999,
           org: 'BlueContest Founder',
-          avatar: '👑'
+          avatar: '🤖'
         }
         if (onLoginUser) onLoginUser(adminUser)
         setSuccessMsg("Admin sifatidaga tizimga kirdingiz!")
@@ -50,10 +96,9 @@ export function AuthModal({
         return
       }
 
-      // Find user from registeredUsers array
       const matchedUser = registeredUsers.find(
         u => (u.name.toLowerCase() === loginIdentifier || (u.email && u.email.toLowerCase() === loginIdentifier)) &&
-             (u.password ? u.password === pass : true)
+             (u.password ? u.password === targetPassword : true)
       )
 
       if (matchedUser) {
@@ -70,21 +115,15 @@ export function AuthModal({
           onClose()
         }, 1200)
       } else {
-        setErrorMsg("Foydalanuvchi nomi yoki parol xato! Agarda akkauntingiz bo'lmasa, 'Ro'yxatdan o'tish' bo'limidan o'ting.")
+        setErrorMsg("Foydalanuvchi nomi yoki parol xato!")
       }
     } else {
-      // Register Mode
-      if (!username.trim() || !password.trim()) {
-        setErrorMsg("Barcha maydonlarni to'ldiring!")
-        return
-      }
-
       const newUser = {
         id: `u_${Date.now()}`,
         name: username.trim(),
         email: email.trim(),
         password: password.trim(),
-        rating: 1500,
+        rating: 1200,
         title: 'Newbie',
         titleColor: 'text-slate-500 bg-slate-500/10 border-slate-500/20',
         solved: 0,
@@ -93,7 +132,7 @@ export function AuthModal({
       }
 
       if (onRegisterUser) onRegisterUser(newUser)
-      setSuccessMsg("Ro'yxatdan o'tish muvaffaqiyatli yakunlandi! Siz tizimga kirdingiz.")
+      setSuccessMsg("Ro'yxatdan o'tish muvaffaqiyatli yakunlandi!")
       setTimeout(() => {
         setSuccessMsg('')
         setUsername('')

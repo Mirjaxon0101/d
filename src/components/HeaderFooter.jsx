@@ -88,7 +88,7 @@ export function Navbar({
                   <button
                     key={item.id}
                     onClick={() => setCurrentTab(item.id)}
-                    className={`flex items-center space-x-1.5 px-2.5 py-1.5 rounded-lg text-xs xl:text-sm font-semibold transition-all ${
+                    className={`flex items-center space-x-1 px-1.5 xl:px-2.5 py-1.5 rounded-lg text-[11px] xl:text-xs font-bold transition-all whitespace-nowrap ${
                       isActive
                         ? 'bg-blue-50 dark:bg-blue-950/50 text-blue-600 dark:text-blue-400'
                         : 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800/60 hover:text-slate-900 dark:hover:text-white'
@@ -103,18 +103,18 @@ export function Navbar({
           </div>
 
           {/* Search, Utilities & Auth / User Profile */}
-          <div className="hidden lg:flex items-center space-x-2 shrink-0">
+          <div className="hidden lg:flex items-center space-x-1.5 shrink-0">
             {/* Quick Search Bar */}
-            <div className="relative w-28 xl:w-44">
+            <div className="relative w-24 xl:w-40">
               <Search className="w-3.5 h-3.5 absolute left-2.5 top-1/2 -translate-y-1/2 text-slate-400" />
               <input
                 type="text"
                 placeholder={
-                  language === 'uz' ? 'Masalalar...' : language === 'ru' ? 'Поиск...' : 'Search...'
+                  language === 'uz' ? 'Qidiruv...' : language === 'ru' ? 'Поиск...' : 'Search...'
                 }
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-8 pr-2 py-1 bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 text-xs rounded-lg border border-transparent focus:border-blue-500 focus:bg-white dark:focus:bg-slate-900 focus:outline-none transition-all placeholder-slate-400 dark:placeholder-slate-500"
+                className="w-full pl-7 pr-2 py-1 bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 text-xs rounded-lg border border-transparent focus:border-blue-500 focus:bg-white dark:focus:bg-slate-900 focus:outline-none transition-all placeholder-slate-400 dark:placeholder-slate-500"
               />
             </div>
 

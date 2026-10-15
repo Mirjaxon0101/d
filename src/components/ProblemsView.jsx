@@ -197,7 +197,7 @@ export function ProblemsView({
           passedTests: res.passedTests
         })
         if (onProblemSolved) {
-          onProblemSolved(selectedProblem?.points || 15)
+          onProblemSolved(selectedProblem?.points || 15, selectedProblem?.id)
         }
       } else {
         setJudgeStatus({
