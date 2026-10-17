@@ -2,10 +2,19 @@ import express from 'express';
 import cors from 'cors';
 import fs from 'fs';
 import path from 'path';
+import crypto from 'crypto';
 import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+// Password SHA-256 hashing helper
+const hashPassword = (pwd) => {
+  if (!pwd) return '';
+  // If password is already a 64-character SHA-256 hex string, return as-is
+  if (/^[a-f0-9]{64}$/i.test(pwd)) return pwd;
+  return crypto.createHash('sha256').update(pwd).digest('hex');
+};
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -145,7 +154,7 @@ app.post('/api/auth', (req, res) => {
       title: 'Newbie',
       titleColor: 'text-slate-500 bg-slate-500/10 border-slate-500/20',
       avatar: avatar || '👨‍💻',
-      password: password,
+      passwordHash: hashPassword(password),
       isBlocked: false,
       solvedProblemIds: []
     };
@@ -156,7 +165,11 @@ app.post('/api/auth', (req, res) => {
   }
 
   if (action === 'login') {
-    const user = users.find(u => u.name.toLowerCase() === targetName.toLowerCase() && u.password === password);
+    const targetHash = hashPassword(password);
+    const user = users.find(
+      u => u.name.toLowerCase() === targetName.toLowerCase() &&
+           (u.passwordHash ? u.passwordHash === targetHash : u.password === password)
+    );
     if (!user) {
       return res.status(401).json({ error: 'Username yoki parol noto\'g\'ri!' });
     }

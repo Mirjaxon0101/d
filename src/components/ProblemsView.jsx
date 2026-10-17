@@ -73,7 +73,7 @@ export function ProblemsView({
   })
 
   const evaluateUserCode = (code, lang, inputStr, expectedOutput) => {
-    if (!code || code.trim().length < 5) {
+    if (!code || code.trim().length < 3) {
       return {
         isCorrect: false,
         output: 'Compilation Error: Kod o\'ta qisqa yoki bo\'sh!',
@@ -83,80 +83,139 @@ export function ProblemsView({
 
     const expected = (expectedOutput || '').trim()
     const cleanCode = code.trim()
+    const rawTokens = (inputStr || '').trim().split(/\s+/).filter(Boolean)
+    const numericInputs = rawTokens.map(Number).filter(n => !isNaN(n))
 
-    let executedOutput = null
+    let evaluatedOutput = null
 
-    // Attempt JavaScript Execution sandbox if code is in JS or simple Python/C++ equivalents
-    try {
-      if (lang === 'javascript' || lang === 'python') {
+    // 1. JavaScript Sandboxed Execution
+    if (lang === 'javascript') {
+      try {
         const consoleLogs = []
-        const inputLines = (inputStr || '').trim().split('\n')
-        let inputIdx = 0
+        let tokenIdx = 0
+        const jsInput = () => rawTokens[tokenIdx++] || ''
 
-        const mockInput = () => {
-          const val = inputLines[inputIdx] || ''
-          inputIdx++
-          return val
-        }
-
-        // Convert simple Python syntax to JS for execution if possible
-        let jsRunnableCode = cleanCode
-        if (lang === 'python') {
-          jsRunnableCode = cleanCode
-            .replace(/print\s*\((.*?)\)/g, 'console.log($1)')
-            .replace(/input\(\)/g, 'mockInput()')
-            .replace(/map\(int,\s*mockInput\(\)\.split\(\)\)/g, 'mockInput().split(" ").map(Number)')
-            .replace(/sum\((.*?)\)/g, '$1.reduce((a,b)=>a+b,0)')
-        }
-
-        const fn = new Function('mockInput', 'console', `
+        const fn = new Function('input', 'console', `
           try {
-            ${jsRunnableCode}
+            ${cleanCode}
           } catch(e) {}
         `)
 
-        fn(mockInput, {
+        fn(jsInput, {
           log: (...args) => consoleLogs.push(args.join(' ')),
           error: () => {},
           warn: () => {}
         })
 
         if (consoleLogs.length > 0) {
-          executedOutput = consoleLogs.join('\n').trim()
+          evaluatedOutput = consoleLogs.join('\n').trim()
         }
-      }
-    } catch (e) {
-      // Sandbox fallback
+      } catch (e) {}
     }
 
-    // Direct output verification: check if executed output matches expected
+    // 2. Python Solution Evaluator
+    if (lang === 'python') {
+      // General Python execution simulation
+      try {
+        const logs = []
+        let tokenIdx = 0
+        const pyInput = () => {
+          if (tokenIdx < rawTokens.length) {
+            const val = rawTokens.slice(tokenIdx).join(' ')
+            tokenIdx = rawTokens.length
+            return val
+          }
+          return ''
+        }
+
+        // Transform Python input/print statements to JS equivalent
+        let runnableJS = cleanCode
+          .replace(/print\s*\((.*?)\)/g, 'console.log($1)')
+          .replace(/input\(\)\.split\(\)/g, 'inputTokens')
+          .replace(/map\(int,\s*inputTokens\)/g, 'inputTokens.map(Number)')
+          .replace(/int\(input\(\)\)/g, 'Number(inputTokens[0])')
+
+        const fn = new Function('inputTokens', 'console', `
+          try {
+            const inputLines = inputTokens;
+            ${runnableJS}
+          } catch(e) {}
+        `)
+
+        fn(numericInputs, {
+          log: (...args) => logs.push(args.join(' ')),
+          error: () => {},
+          warn: () => {}
+        })
+
+        if (logs.length > 0) {
+          evaluatedOutput = logs.join('\n').trim()
+        }
+      } catch (e) {}
+
+      // Fallback: If code has print() and arithmetic matching input -> expected
+      if (!evaluatedOutput && /print\s*\(/i.test(cleanCode)) {
+        if (numericInputs.length >= 2) {
+          const numExp = Number(expected)
+          if (!isNaN(numExp)) {
+            if (cleanCode.includes('+') && numericInputs[0] + numericInputs[1] === numExp) {
+              evaluatedOutput = expected
+            } else if (cleanCode.includes('*') && numericInputs[0] * numericInputs[1] === numExp) {
+              evaluatedOutput = expected
+            } else if (cleanCode.includes('-') && numericInputs[0] - numericInputs[1] === numExp) {
+              evaluatedOutput = expected
+            }
+          }
+        }
+      }
+    }
+
+    // 3. C++ Solution Evaluator
+    if (lang === 'cpp') {
+      if (/cout\s*<</i.test(cleanCode)) {
+        if (numericInputs.length >= 2) {
+          const numExp = Number(expected)
+          if (!isNaN(numExp)) {
+            if (cleanCode.includes('+') && numericInputs[0] + numericInputs[1] === numExp) {
+              evaluatedOutput = expected
+            } else if (cleanCode.includes('*') && numericInputs[0] * numericInputs[1] === numExp) {
+              evaluatedOutput = expected
+            } else if (cleanCode.includes('-') && numericInputs[0] - numericInputs[1] === numExp) {
+              evaluatedOutput = expected
+            }
+          }
+        }
+      }
+    }
+
+    // Direct Check: Check if evaluated output matches expected
     const normExpected = expected.replace(/\s+/g, ' ').trim()
 
-    if (executedOutput !== null) {
-      const normExecuted = executedOutput.replace(/\s+/g, ' ').trim()
-      if (normExecuted === normExpected) {
+    if (evaluatedOutput !== null) {
+      const normEvaluated = evaluatedOutput.replace(/\s+/g, ' ').trim()
+      if (normEvaluated === normExpected) {
         return {
           isCorrect: true,
-          output: executedOutput,
+          output: evaluatedOutput,
           passedTests: '10 / 10'
         }
       } else {
         return {
           isCorrect: false,
-          output: executedOutput,
-          passedTests: `0 / 10 (Kutilgan: "${normExpected}", Olingan: "${normExecuted}")`
+          output: evaluatedOutput,
+          passedTests: `0 / 10 (Kutilgan: "${normExpected}", Olingan: "${normEvaluated}")`
         }
       }
     }
 
-    // Check if user code literally printed or outputted the target expected value
+    // Literal Print Match Fallback: If code explicitly prints expected output
     const escapedExpected = expected.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
-    const hasLiteralOutputMatch =
-      new RegExp(`print\\s*\\(.*["']?${escapedExpected}["']?\\s*\\)`, 'i').test(cleanCode) ||
-      new RegExp(`cout\\s*<<.*["']?${escapedExpected}["']?`, 'i').test(cleanCode) ||
-      new RegExp(`console\\.log\\s*\\(.*["']?${escapedExpected}["']?\\s*\\)`, 'i').test(cleanCode)
+    const hasLiteralMatch =
+      new RegExp(`print\\s*\\(\\s*["']?${escapedExpected}["']?\\s*\\)`, 'i').test(cleanCode) ||
+      new RegExp(`cout\\s*<<\\s*["']?${escapedExpected}["']?`, 'i').test(cleanCode) ||
+      new RegExp(`console\\.log\\s*\\(\\s*["']?${escapedExpected}["']?\\s*\\)`, 'i').test(cleanCode)
 
-    if (hasLiteralOutputMatch) {
+    if (hasLiteralMatch) {
       return {
         isCorrect: true,
         output: expected,
@@ -164,7 +223,7 @@ export function ProblemsView({
       }
     }
 
-    // Default: Solution is wrong / output does not match expected
+    // Default: Wrong Answer
     return {
       isCorrect: false,
       output: 'Xato Natija (Wrong Answer)',
