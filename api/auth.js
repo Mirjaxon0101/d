@@ -1,8 +1,6 @@
-import fs from 'fs';
-import path from 'path';
 import crypto from 'crypto';
 
-const DB_FILE = '/tmp/database.json';
+const GLOBAL_DB_URL = 'https://api.restful-api.dev/objects/ff808181a09d98f701a158f3f0d42bf1';
 
 const hashPassword = (pwd) => {
   if (!pwd) return '';
@@ -39,26 +37,33 @@ const DEFAULT_USERS = [
   }
 ];
 
-const readDB = () => {
+const fetchRemoteUsers = async () => {
   try {
-    if (!fs.existsSync(DB_FILE)) {
-      fs.writeFileSync(DB_FILE, JSON.stringify({ users: DEFAULT_USERS }, null, 2));
-      return { users: DEFAULT_USERS };
+    const res = await fetch(GLOBAL_DB_URL);
+    if (res.ok) {
+      const data = await res.json();
+      if (data && data.data && Array.isArray(data.data.users)) {
+        return data.data.users;
+      }
     }
-    const data = fs.readFileSync(DB_FILE, 'utf8');
-    return JSON.parse(data);
-  } catch (err) {
-    return { users: DEFAULT_USERS };
-  }
+  } catch (e) {}
+  return DEFAULT_USERS;
 };
 
-const writeDB = (data) => {
+const updateRemoteUsers = async (users) => {
   try {
-    fs.writeFileSync(DB_FILE, JSON.stringify(data, null, 2));
-  } catch (err) {}
+    await fetch(GLOBAL_DB_URL, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: 'bluecontest_database',
+        data: { users }
+      })
+    });
+  } catch (e) {}
 };
 
-export default function handler(req, res) {
+export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
@@ -68,8 +73,7 @@ export default function handler(req, res) {
   }
 
   const { action, username, name, password, email, org, avatar } = req.body || {};
-  const db = readDB();
-  let users = db.users || [];
+  let users = await fetchRemoteUsers();
 
   const targetName = (username || name || '').trim();
 
@@ -98,7 +102,7 @@ export default function handler(req, res) {
     };
 
     users.push(newUser);
-    writeDB({ ...db, users });
+    await updateRemoteUsers(users);
     return res.json({ success: true, user: newUser });
   }
 
