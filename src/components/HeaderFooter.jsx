@@ -88,13 +88,13 @@ export function Navbar({
                   <button
                     key={item.id}
                     onClick={() => setCurrentTab(item.id)}
-                    className={`flex items-center space-x-1 px-1.5 xl:px-2.5 py-1.5 rounded-lg text-[11px] xl:text-xs font-bold transition-all whitespace-nowrap ${
+                    className={`flex items-center space-x-1 px-2 xl:px-3 py-2 rounded-lg text-sm xl:text-base font-bold transition-all whitespace-nowrap ${
                       isActive
                         ? 'bg-blue-50 dark:bg-blue-950/50 text-blue-600 dark:text-blue-400'
                         : 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800/60 hover:text-slate-900 dark:hover:text-white'
                     }`}
                   >
-                    <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-blue-600 dark:text-blue-400' : 'text-slate-400'}`} />
+                    <Icon className={`w-4 h-4 ${isActive ? 'text-blue-600 dark:text-blue-400' : 'text-slate-400'}`} />
                     <span>{item.label[language] || item.label.uz}</span>
                   </button>
                 )

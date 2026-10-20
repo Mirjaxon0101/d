@@ -142,8 +142,8 @@ export function HomeView({
                 <Icon className="w-6 h-6 stroke-[2.5]" />
               </div>
               <div>
-                <p className="text-3xl font-black text-slate-900 dark:text-white tracking-tight">{item.value}</p>
-                <p className="text-sm font-semibold text-slate-500 dark:text-slate-400 mt-0.5">
+                <p className="text-4xl font-black text-slate-900 dark:text-white tracking-tight">{item.value}</p>
+                <p className="text-base font-bold text-slate-600 dark:text-slate-300 mt-0.5">
                   {item.label[language] || item.label.uz}
                 </p>
               </div>

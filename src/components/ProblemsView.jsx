@@ -315,17 +315,17 @@ export function ProblemsView({
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
-              <tr className="bg-slate-50 dark:bg-slate-900/60 border-b border-slate-200 dark:border-slate-800 text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-                <th className="py-3.5 px-4 text-center w-16">ID</th>
-                <th className="py-3.5 px-6">Masala Nomi</th>
-                <th className="py-3.5 px-4">Qiyinchilik</th>
-                <th className="py-3.5 px-4">Ball</th>
-                <th className="py-3.5 px-4">Qabul Qilingan</th>
-                <th className="py-3.5 px-4">Qabul%</th>
-                <th className="py-3.5 px-6 text-right">Amal</th>
+              <tr className="bg-slate-50 dark:bg-slate-900/60 border-b border-slate-200 dark:border-slate-800 text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                <th className="py-4 px-4 text-center w-20">ID</th>
+                <th className="py-4 px-6">Masala Nomi</th>
+                <th className="py-4 px-4">Qiyinchilik</th>
+                <th className="py-4 px-4">Ball</th>
+                <th className="py-4 px-4">Qabul Qilingan</th>
+                <th className="py-4 px-4">Qabul%</th>
+                <th className="py-4 px-6 text-right">Amal</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-100 dark:divide-slate-800 text-sm">
+            <tbody className="divide-y divide-slate-100 dark:divide-slate-800 text-base">
               {filteredProblems.length > 0 ? (
                 filteredProblems.map((prob) => (
                   <tr
@@ -340,13 +340,13 @@ export function ProblemsView({
                       setSelectedProblem(prob)
                     }}
                   >
-                    <td className="py-4 px-4 text-center font-mono font-bold text-slate-400">
+                    <td className="py-4 px-4 text-center font-mono font-bold text-slate-400 text-base">
                       #{prob.id}
                     </td>
 
                     <td className="py-4 px-6">
                       <div className="flex flex-col">
-                        <span className="font-bold text-slate-900 dark:text-slate-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                        <span className="font-bold text-slate-900 dark:text-slate-100 text-lg group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                           {prob.title}
                         </span>
                         <div className="flex items-center space-x-1.5 mt-1">

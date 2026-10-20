@@ -111,16 +111,16 @@ export function RatingsView({ language = 'uz', users = [], setUsers }) {
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
-              <tr className="bg-slate-50 dark:bg-slate-900/60 border-b border-slate-200 dark:border-slate-800 text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-                <th className="py-3.5 px-4 text-center w-16">O'rin</th>
-                <th className="py-3.5 px-6">Dasturchi (Username)</th>
-                <th className="py-3.5 px-4">Unvon (Title)</th>
-                <th className="py-3.5 px-6">Tashkilot / O'quv maskani</th>
-                <th className="py-3.5 px-4">Yechilgan</th>
-                <th className="py-3.5 px-6 text-right">Reyting Balli</th>
+              <tr className="bg-slate-50 dark:bg-slate-900/60 border-b border-slate-200 dark:border-slate-800 text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                <th className="py-4 px-4 text-center w-20">O'rin</th>
+                <th className="py-4 px-6">Dasturchi (Username)</th>
+                <th className="py-4 px-4">Unvon (Title)</th>
+                <th className="py-4 px-6">Tashkilot / O'quv maskani</th>
+                <th className="py-4 px-4">Yechilgan</th>
+                <th className="py-4 px-6 text-right">Reyting Balli</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-100 dark:divide-slate-800 text-sm">
+            <tbody className="divide-y divide-slate-100 dark:divide-slate-800 text-base">
               {filteredCoders.length > 0 ? (
                 filteredCoders.map((coder) => (
                   <tr
@@ -128,7 +128,7 @@ export function RatingsView({ language = 'uz', users = [], setUsers }) {
                     onClick={() => setSelectedUserModal(coder)}
                     className="hover:bg-slate-50/80 dark:hover:bg-slate-700/30 transition-colors cursor-pointer group"
                   >
-                    <td className="py-4 px-4 text-center font-mono font-bold text-slate-500">
+                    <td className="py-4 px-4 text-center font-mono font-bold text-slate-500 text-lg">
                       #{coder.rank}
                     </td>
 
@@ -137,9 +137,9 @@ export function RatingsView({ language = 'uz', users = [], setUsers }) {
                         <AvatarWithFrame
                           avatar={coder.avatar || '💻'}
                           title={coder.title || 'Newbie'}
-                          size="sm"
+                          size="md"
                         />
-                        <span className="font-bold text-slate-900 dark:text-slate-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                        <span className="font-bold text-slate-900 dark:text-slate-100 text-lg group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                           {coder.name}
                         </span>
                       </div>

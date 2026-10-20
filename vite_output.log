@@ -9,3 +9,7 @@ Port 3000 is in use, trying another one...
 1:29:03 PM [vite] hmr update /src/components/HomeView.jsx, /src/index.css
 1:29:09 PM [vite] hmr update /src/components/HomeView.jsx, /src/index.css
 1:29:12 PM [vite] hmr update /src/components/HomeView.jsx, /src/index.css
+1:44:01 PM [vite] hmr update /src/components/HomeView.jsx, /src/index.css
+1:44:32 PM [vite] hmr update /src/components/ProblemsView.jsx, /src/index.css
+1:44:56 PM [vite] hmr update /src/components/HeaderFooter.jsx, /src/index.css
+1:45:20 PM [vite] hmr update /src/components/RatingsView.jsx, /src/index.css
