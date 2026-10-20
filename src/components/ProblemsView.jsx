@@ -18,6 +18,7 @@ import {
   Sparkles
 } from 'lucide-react'
 import { initialProblems } from '../data/problemsData'
+import Skulpt from 'skulpt'
 
 export function ProblemsView({
   language = 'uz',
@@ -72,33 +73,64 @@ export function ProblemsView({
     return matchesSearch && matchesDifficulty && matchesTag
   })
 
-  const evaluateUserCode = (code, lang, inputStr, expectedOutput) => {
-    if (!code || code.trim().length < 3) {
+  const evaluateUserCodeAsync = async (code, lang, inputStr, expectedOutput) => {
+    if (!code || code.trim().length < 2) {
       return {
         isCorrect: false,
-        output: 'Compilation Error: Kod o\'ta qisqa yoki bo\'sh!',
+        output: 'Compilation Error: Kod bo\'sh!',
         passedTests: '0 / 10'
       }
     }
 
     const expected = (expectedOutput || '').trim()
     const cleanCode = code.trim()
-    const rawTokens = (inputStr || '').trim().split(/\s+/).filter(Boolean)
-    const numericInputs = rawTokens.map(Number).filter(n => !isNaN(n))
+    const rawInputLines = (inputStr || '').trim().split('\n')
+    let inputIdx = 0
 
-    let evaluatedOutput = null
+    let evaluatedOutput = ''
 
-    // 1. JavaScript Sandboxed Execution
-    if (lang === 'javascript') {
+    if (lang === 'python') {
+      try {
+        let outputBuffer = ''
+        Skulpt.configure({
+          output: (text) => { outputBuffer += text },
+          read: (x) => {
+            if (Skulpt.builtinFiles === undefined || Skulpt.builtinFiles["files"][x] === undefined) {
+              throw "File not found: '" + x + "'";
+            }
+            return Skulpt.builtinFiles["files"][x];
+          },
+          inputfun: () => {
+            const line = rawInputLines[inputIdx] || ''
+            inputIdx++
+            return line
+          },
+          inputfunTakesPrompt: false
+        })
+
+        await Skulpt.misceval.asyncToPromise(() => {
+          return Skulpt.importMainWithBody("<stdin>", false, cleanCode, true)
+        })
+
+        evaluatedOutput = outputBuffer.trim()
+      } catch (e) {
+        evaluatedOutput = `Xatolik (Runtime Error): ${e.toString()}`
+      }
+    } else if (lang === 'javascript') {
       try {
         const consoleLogs = []
-        let tokenIdx = 0
-        const jsInput = () => rawTokens[tokenIdx++] || ''
+        const jsInput = () => {
+          const val = rawInputLines[inputIdx] || ''
+          inputIdx++
+          return val
+        }
 
         const fn = new Function('input', 'console', `
           try {
             ${cleanCode}
-          } catch(e) {}
+          } catch(e) {
+            console.log('Runtime Error: ' + e.message)
+          }
         `)
 
         fn(jsInput, {
@@ -107,166 +139,102 @@ export function ProblemsView({
           warn: () => {}
         })
 
-        if (consoleLogs.length > 0) {
-          evaluatedOutput = consoleLogs.join('\n').trim()
-        }
-      } catch (e) {}
-    }
-
-    // 2. Python Solution Evaluator
-    if (lang === 'python') {
-      // General Python execution simulation
+        evaluatedOutput = consoleLogs.join('\n').trim()
+      } catch (e) {
+        evaluatedOutput = `Runtime Error: ${e.message}`
+      }
+    } else if (lang === 'cpp') {
       try {
-        const logs = []
+        const consoleLogs = []
+        const rawTokens = (inputStr || '').trim().split(/\s+/).filter(Boolean)
         let tokenIdx = 0
-        const pyInput = () => {
-          if (tokenIdx < rawTokens.length) {
-            const val = rawTokens.slice(tokenIdx).join(' ')
-            tokenIdx = rawTokens.length
-            return val
+
+        // Parse C++ cout << expressions
+        const coutMatches = [...cleanCode.matchAll(/cout\s*<<\s*([^;]+);/gi)]
+        if (coutMatches.length > 0) {
+          const expr = coutMatches[coutMatches.length - 1][1]
+            .replace(/endl/g, '')
+            .replace(/\\n/g, '')
+            .replace(/<<\s*["']?\s*["']?/g, '')
+            .trim()
+
+          // Extract variables declared with cin >>
+          const cinMatch = cleanCode.match(/cin\s*>>\s*([^;]+);/i)
+          if (cinMatch) {
+            const vars = cinMatch[1].split('>>').map(v => v.trim()).filter(Boolean)
+            const env = {}
+            vars.forEach((v, idx) => {
+              env[v] = Number(rawTokens[idx]) || 0
+            })
+
+            // Replace variables in expr with numbers
+            let evalExpr = expr
+            Object.keys(env).forEach(v => {
+              const reg = new RegExp(`\\b${v}\\b`, 'g')
+              evalExpr = evalExpr.replace(reg, env[v])
+            })
+
+            try {
+              const calcRes = Function(`"use strict"; return (${evalExpr})`)()
+              if (calcRes !== undefined && !isNaN(calcRes)) {
+                evaluatedOutput = calcRes.toString()
+              }
+            } catch (err) {}
           }
-          return ''
-        }
-
-        // Transform Python input/print statements to JS equivalent
-        let runnableJS = cleanCode
-          .replace(/print\s*\((.*?)\)/g, 'console.log($1)')
-          .replace(/input\(\)\.split\(\)/g, 'inputTokens')
-          .replace(/map\(int,\s*inputTokens\)/g, 'inputTokens.map(Number)')
-          .replace(/int\(input\(\)\)/g, 'Number(inputTokens[0])')
-
-        const fn = new Function('inputTokens', 'console', `
-          try {
-            const inputLines = inputTokens;
-            ${runnableJS}
-          } catch(e) {}
-        `)
-
-        fn(numericInputs, {
-          log: (...args) => logs.push(args.join(' ')),
-          error: () => {},
-          warn: () => {}
-        })
-
-        if (logs.length > 0) {
-          evaluatedOutput = logs.join('\n').trim()
         }
       } catch (e) {}
-
-      // Fallback: If code has print() and arithmetic matching input -> expected
-      if (!evaluatedOutput && /print\s*\(/i.test(cleanCode)) {
-        if (numericInputs.length >= 2) {
-          const numExp = Number(expected)
-          if (!isNaN(numExp)) {
-            if (cleanCode.includes('+') && numericInputs[0] + numericInputs[1] === numExp) {
-              evaluatedOutput = expected
-            } else if (cleanCode.includes('*') && numericInputs[0] * numericInputs[1] === numExp) {
-              evaluatedOutput = expected
-            } else if (cleanCode.includes('-') && numericInputs[0] - numericInputs[1] === numExp) {
-              evaluatedOutput = expected
-            }
-          }
-        }
-      }
     }
 
-    // 3. C++ Solution Evaluator
-    if (lang === 'cpp') {
-      if (/cout\s*<</i.test(cleanCode)) {
-        if (numericInputs.length >= 2) {
-          const numExp = Number(expected)
-          if (!isNaN(numExp)) {
-            if (cleanCode.includes('+') && numericInputs[0] + numericInputs[1] === numExp) {
-              evaluatedOutput = expected
-            } else if (cleanCode.includes('*') && numericInputs[0] * numericInputs[1] === numExp) {
-              evaluatedOutput = expected
-            } else if (cleanCode.includes('-') && numericInputs[0] - numericInputs[1] === numExp) {
-              evaluatedOutput = expected
-            }
-          }
-        }
-      }
-    }
+    const normExpected = expected.replace(/\r\n/g, '\n').replace(/\s+/g, ' ').trim()
+    const normEvaluated = evaluatedOutput.replace(/\r\n/g, '\n').replace(/\s+/g, ' ').trim()
 
-    // Direct Check: Check if evaluated output matches expected
-    const normExpected = expected.replace(/\s+/g, ' ').trim()
-
-    if (evaluatedOutput !== null) {
-      const normEvaluated = evaluatedOutput.replace(/\s+/g, ' ').trim()
-      if (normEvaluated === normExpected) {
-        return {
-          isCorrect: true,
-          output: evaluatedOutput,
-          passedTests: '10 / 10'
-        }
-      } else {
-        return {
-          isCorrect: false,
-          output: evaluatedOutput,
-          passedTests: `0 / 10 (Kutilgan: "${normExpected}", Olingan: "${normEvaluated}")`
-        }
-      }
-    }
-
-    // Literal Print Match Fallback: If code explicitly prints expected output
-    const escapedExpected = expected.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
-    const hasLiteralMatch =
-      new RegExp(`print\\s*\\(\\s*["']?${escapedExpected}["']?\\s*\\)`, 'i').test(cleanCode) ||
-      new RegExp(`cout\\s*<<\\s*["']?${escapedExpected}["']?`, 'i').test(cleanCode) ||
-      new RegExp(`console\\.log\\s*\\(\\s*["']?${escapedExpected}["']?\\s*\\)`, 'i').test(cleanCode)
-
-    if (hasLiteralMatch) {
+    if (normEvaluated === normExpected && normExpected !== '') {
       return {
         isCorrect: true,
-        output: expected,
+        output: evaluatedOutput,
         passedTests: '10 / 10'
       }
-    }
-
-    // Default: Wrong Answer
-    return {
-      isCorrect: false,
-      output: 'Xato Natija (Wrong Answer)',
-      passedTests: `0 / 10 (Kutilgan: "${normExpected}", Olingan: "Xato yechim")`
+    } else {
+      return {
+        isCorrect: false,
+        output: evaluatedOutput || 'Xato natija (Wrong Output)',
+        passedTests: `0 / 10 (Kutilgan: "${normExpected}", Olingan: "${normEvaluated}")`
+      }
     }
   }
 
-  const handleRunSample = () => {
+  const handleRunSample = async () => {
     setIsEvaluating(true)
     setCustomOutput('Kompilyatsiya va bajarilish kutilmoqda...')
-    setTimeout(() => {
-      setIsEvaluating(false)
-      const res = evaluateUserCode(userCode, codeLang, customInput, selectedProblem.sampleOutput)
-      setCustomOutput(res.output)
-    }, 500)
+    const res = await evaluateUserCodeAsync(userCode, codeLang, customInput, selectedProblem.sampleOutput)
+    setIsEvaluating(false)
+    setCustomOutput(res.output)
   }
 
-  const handleSubmitSolution = () => {
+  const handleSubmitSolution = async () => {
     setIsEvaluating(true)
     setJudgeStatus({ status: 'Running', time: '...', memory: '...' })
-    setTimeout(() => {
-      setIsEvaluating(false)
-      const res = evaluateUserCode(userCode, codeLang, selectedProblem.sampleInput, selectedProblem.sampleOutput)
+    const res = await evaluateUserCodeAsync(userCode, codeLang, selectedProblem.sampleInput, selectedProblem.sampleOutput)
+    setIsEvaluating(false)
 
-      if (res.isCorrect) {
-        setJudgeStatus({
-          status: 'Accepted',
-          time: '24 ms',
-          memory: '8.4 MB',
-          passedTests: res.passedTests
-        })
-        if (onProblemSolved) {
-          onProblemSolved(selectedProblem?.points || 15, selectedProblem?.id)
-        }
-      } else {
-        setJudgeStatus({
-          status: 'Wrong Answer',
-          time: '18 ms',
-          memory: '7.1 MB',
-          passedTests: res.passedTests
-        })
+    if (res.isCorrect) {
+      setJudgeStatus({
+        status: 'Accepted',
+        time: '24 ms',
+        memory: '8.4 MB',
+        passedTests: res.passedTests
+      })
+      if (onProblemSolved) {
+        onProblemSolved(selectedProblem?.points || 15, selectedProblem?.id)
       }
-    }, 1000)
+    } else {
+      setJudgeStatus({
+        status: 'Wrong Answer',
+        time: '18 ms',
+        memory: '7.1 MB',
+        passedTests: res.passedTests
+      })
+    }
   }
 
   const handleCopyCode = () => {

@@ -56,7 +56,8 @@ export default function App() {
   // Fetch central database users on load
   const fetchUsers = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/users')
+      const apiUrl = window.location.origin.includes('localhost') ? 'http://localhost:5000/api/users' : '/api/users'
+      const res = await fetch(apiUrl)
       if (res.ok) {
         const data = await res.json()
         if (Array.isArray(data) && data.length > 0) {
@@ -199,10 +200,11 @@ export default function App() {
 
               // Backend API call
               try {
-                const res = await fetch(`http://localhost:5000/api/users/${currentUser.id}/solve`, {
+                const endpoint = window.location.origin.includes('localhost') ? `http://localhost:5000/api/users/${currentUser.id}/solve` : '/api/users'
+                const res = await fetch(endpoint, {
                   method: 'POST',
                   headers: { 'Content-Type': 'application/json' },
-                  body: JSON.stringify({ points: points || 15, problemId })
+                  body: JSON.stringify({ points: points || 15, problemId, userId: currentUser.id })
                 })
                 if (res.ok) {
                   const data = await res.json()

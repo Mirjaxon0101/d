@@ -63,7 +63,8 @@ export function UserSettingsModal({ isOpen, onClose, currentUser, onUpdateUser }
 
     // Try sync with backend API
     try {
-      const res = await fetch(`http://localhost:5000/api/users/${currentUser.id}`, {
+      const endpoint = window.location.origin.includes('localhost') ? `http://localhost:5000/api/users/${currentUser.id}` : '/api/users'
+      const res = await fetch(endpoint, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(updatedPayload)

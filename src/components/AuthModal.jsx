@@ -28,7 +28,8 @@ export function AuthModal({
 
     // Try central backend API
     try {
-      const res = await fetch('http://localhost:5000/api/auth', {
+      const endpoint = window.location.origin.includes('localhost') ? 'http://localhost:5000/api/auth' : '/api/auth'
+      const res = await fetch(endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
