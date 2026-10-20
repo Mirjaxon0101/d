@@ -13,3 +13,9 @@ Port 3000 is in use, trying another one...
 1:44:32 PM [vite] hmr update /src/components/ProblemsView.jsx, /src/index.css
 1:44:56 PM [vite] hmr update /src/components/HeaderFooter.jsx, /src/index.css
 1:45:20 PM [vite] hmr update /src/components/RatingsView.jsx, /src/index.css
+1:55:54 PM [vite] hmr update /src/components/AuthModal.jsx, /src/index.css
+1:56:00 PM [vite] hmr update /src/components/AuthModal.jsx, /src/index.css
+1:56:16 PM [vite] hmr update /src/App.jsx, /src/index.css
+1:56:22 PM [vite] hmr update /src/App.jsx, /src/index.css
+1:57:11 PM [vite] ✨ new dependencies optimized: @supabase/supabase-js
+1:57:11 PM [vite] ✨ optimized dependencies changed. reloading

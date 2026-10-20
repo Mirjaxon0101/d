@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { X, Lock, Mail, User, ShieldCheck, ArrowRight, KeyRound } from 'lucide-react'
+import { supabase } from '../lib/supabaseClient'
 
 export function AuthModal({
   isOpen,
@@ -47,7 +48,34 @@ export function AuthModal({
       // Login directly without OTP requirement
       const loginIdentifier = targetUsername.toLowerCase()
 
-      // Central backend API check first
+      // 1. Try querying Supabase Database
+      try {
+        const { data: suData, error: suError } = await supabase
+          .from('users')
+          .select('*')
+          .or(`email.eq.${loginIdentifier},name.eq.${loginIdentifier}`)
+          .single()
+
+        if (suData && suData.password === targetPassword) {
+          if (suData.is_blocked) {
+            setErrorMsg("Sizning akkauntingiz admin tomonidan bloklangan!")
+            return
+          }
+          if (onLoginUser) onLoginUser(suData)
+          setSuccessMsg("Supabase orqali muvaffaqiyatli tizimga kirdingiz!")
+          setTimeout(() => {
+            setSuccessMsg('')
+            setEmail('')
+            setPassword('')
+            onClose()
+          }, 1000)
+          return
+        }
+      } catch (suErr) {
+        console.log('Supabase query fallback to local API')
+      }
+
+      // 2. Central backend API check
       try {
         const endpoint = window.location.origin.includes('localhost') ? 'http://localhost:5000/api/auth' : '/api/auth'
         const res = await fetch(endpoint, {

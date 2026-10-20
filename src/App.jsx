@@ -9,6 +9,7 @@ import { AdminPanel } from './components/AdminPanel'
 import { AuthModal } from './components/AuthModal'
 import { UserSettingsModal } from './components/UserSettingsModal'
 import { initialProblems } from './data/problemsData'
+import { supabase } from './lib/supabaseClient'
 
 export function getUserTitleInfo(solvedCount) {
   if (solvedCount >= 200) {
@@ -101,8 +102,24 @@ export default function App() {
     }
   })
 
-  // Fetch central database users on load
+  // Fetch central database users on load (Supabase first, then local API fallback)
   const fetchUsers = async () => {
+    try {
+      // 1. Try Supabase
+      const { data: suUsers, error: suErr } = await supabase.from('users').select('*')
+      if (suUsers && suUsers.length > 0) {
+        setUsers(suUsers)
+        localStorage.setItem('bluecontest_users', JSON.stringify(suUsers))
+        if (currentUser) {
+          const synced = suUsers.find(u => u.id === currentUser.id || u.name.toLowerCase() === currentUser.name.toLowerCase())
+          if (synced) setCurrentUser(synced)
+        }
+        return
+      }
+    } catch (err) {
+      console.log('Supabase fetch fallback to local API')
+    }
+
     try {
       const apiUrl = window.location.origin.includes('localhost') ? 'http://localhost:5000/api/users' : '/api/users'
       const res = await fetch(apiUrl)
@@ -112,7 +129,6 @@ export default function App() {
           setUsers(data)
           localStorage.setItem('bluecontest_users', JSON.stringify(data))
 
-          // Sync active currentUser if updated in DB
           if (currentUser) {
             const synced = data.find(u => u.id === currentUser.id || u.name.toLowerCase() === currentUser.name.toLowerCase())
             if (synced) {
