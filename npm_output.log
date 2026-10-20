@@ -1,0 +1,5 @@
+
+> robocontest-clone@1.0.0 start
+> node server.js
+
+BlueContest Central DB API server running on port 5000

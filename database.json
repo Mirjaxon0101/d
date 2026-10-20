@@ -1,0 +1,56 @@
+{
+  "users": [
+    {
+      "id": "u_admin",
+      "name": "Admin",
+      "org": "BlueContest HQ",
+      "rating": 2850,
+      "solved": 215,
+      "title": "Hacker Programmer",
+      "titleColor": "text-red-500 bg-red-500/10 border-red-500/20",
+      "avatar": "🤖",
+      "password": "qwertyuiop",
+      "isBlocked": false,
+      "solvedProblemIds": []
+    },
+    {
+      "id": "u_1",
+      "name": "Asadbek_Olimov",
+      "org": "TATU Samarkand",
+      "rating": 2420,
+      "solved": 168,
+      "title": "Grandmaster",
+      "titleColor": "text-orange-500 bg-orange-500/10 border-orange-500/20",
+      "avatar": "👨‍💻",
+      "password": "password123",
+      "isBlocked": false,
+      "solvedProblemIds": []
+    },
+    {
+      "id": "u_2",
+      "name": "Sardor_Dev",
+      "org": "SamDU Inno",
+      "rating": 2110,
+      "solved": 112,
+      "title": "Master",
+      "titleColor": "text-purple-500 bg-purple-500/10 border-purple-500/20",
+      "avatar": "🚀",
+      "password": "password123",
+      "isBlocked": false,
+      "solvedProblemIds": []
+    },
+    {
+      "id": "u_3",
+      "name": "Nodira_Code",
+      "org": "TUIT Tashkent",
+      "rating": 1840,
+      "solved": 65,
+      "title": "Specialist",
+      "titleColor": "text-cyan-500 bg-cyan-500/10 border-cyan-500/20",
+      "avatar": "👩‍💻",
+      "password": "password123",
+      "isBlocked": false,
+      "solvedProblemIds": []
+    }
+  ]
+}
