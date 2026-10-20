@@ -39,7 +39,7 @@ export function DiscussionsView({ language = 'uz' }) {
       likes: 89,
       commentsCount: 34,
       tag: 'Announcement',
-      content: `RoboContest tizimida o'rnatilgan yangi PyPy3 va GCC C++23 komplyatorlari o'rtasidagi xotira va vaqt ishlatish ko'rsatkichlari tahlili.`
+      content: `BlueContest tizimida o'rnatilgan yangi PyPy3 va GCC C++23 komplyatorlari o'rtasidagi xotira va vaqt ishlatish ko'rsatkichlari tahlili.`
     },
     {
       id: 3,

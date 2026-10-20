@@ -42,14 +42,14 @@ export function ContestsView({ language = 'uz', activeContestModal, onCloseModal
   const contestsList = [
     {
       id: 'c101',
-      title: 'RoboContest Round #98 (Div 2 + Div 1)',
+      title: 'BlueContest Round #98 (Div 2 + Div 1)',
       type: 'Rated',
       status: 'Upcoming',
       startTime: '2025-03-20 19:30',
       duration: '02:30:00',
       participantsCount: 1420,
       description: 'Sport dasturlashi bo\'yicha navbatdagi reytingli musobaqa. Barcha ishtirokchilar reytingini o\'zgartirish huquqiga ega.',
-      organizer: 'RoboContest Team',
+      organizer: 'BlueContest Team',
       rules: 'ICPC qoidalari: har bir xato urinish uchun 20 daqiqa jarima vaqti qo\'shiladi.'
     },
     {
@@ -78,7 +78,7 @@ export function ContestsView({ language = 'uz', activeContestModal, onCloseModal
     },
     {
       id: 'c99',
-      title: 'RoboContest Round #97 (Div 3)',
+      title: 'BlueContest Round #97 (Div 3)',
       type: 'Rated',
       status: 'Past',
       startTime: '01 Mart, 2025',
@@ -86,7 +86,7 @@ export function ContestsView({ language = 'uz', activeContestModal, onCloseModal
       participantsCount: 1890,
       winner: 'Asadbek_Olimov',
       description: 'Boshlang\'ich va o\'rta darajadagi dasturchilar uchun reytingli musobaqa.',
-      organizer: 'RoboContest Team',
+      organizer: 'BlueContest Team',
       rules: 'ICPC qoidalari.'
     },
     {
@@ -139,7 +139,7 @@ export function ContestsView({ language = 'uz', activeContestModal, onCloseModal
             <span>:</span>
             <span>{String(timeLeft.seconds).padStart(2, '0')}</span>
           </div>
-          <span className="text-[10px] text-slate-400 mt-1">RoboContest Round #98</span>
+          <span className="text-[10px] text-slate-400 mt-1">BlueContest Round #98</span>
         </div>
       </div>
 

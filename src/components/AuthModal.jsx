@@ -317,6 +317,22 @@ export function AuthModal({
     }
   }
 
+  const handleGoogleOAuthRedirect = async () => {
+    try {
+      const { data, error } = await supabase.auth.signInWithOAuth({
+        provider: 'google',
+        options: {
+          redirectTo: window.location.origin
+        }
+      })
+      if (error) {
+        setErrorMsg("Google OAuth xatolik: " + error.message)
+      }
+    } catch (err) {
+      console.log('Supabase OAuth error, using Google Account simulation mode')
+    }
+  }
+
   const handleGoogleSubmit = async (e) => {
     e.preventDefault()
     setErrorMsg('')
@@ -329,26 +345,34 @@ export function AuthModal({
 
     const existingGUser = registeredUsers.find(u => u.email && u.email.toLowerCase() === gEmailClean)
 
+    // Automatically generate username and password settings from Google identity
     const gUsername = gEmailClean.split('@')[0]
-    const gUser = existingGUser || {
-      id: `u_g_${Date.now()}`,
-      name: gUsername,
-      email: gEmailClean,
-      password: googlePassword || 'google_pass',
-      rating: 1200,
-      title: 'Newbie',
-      titleColor: 'text-slate-500 bg-slate-500/10 border-slate-500/20',
-      solved: 0,
-      org: 'Google User',
-      avatar: '🌐'
-    }
+    const autoPassword = googlePassword.trim() || `GPass_${Math.floor(1000 + Math.random() * 9000)}`
+
+    const gUser = existingGUser
+      ? {
+          ...existingGUser,
+          password: googlePassword.trim() || existingGUser.password
+        }
+      : {
+          id: `u_g_${Date.now()}`,
+          name: gUsername,
+          email: gEmailClean,
+          password: autoPassword,
+          rating: 1200,
+          title: 'Newbie',
+          titleColor: 'text-slate-500 bg-slate-500/10 border-slate-500/20',
+          solved: 0,
+          org: 'Google User',
+          avatar: '🌐'
+        }
 
     if (!existingGUser && onRegisterUser) {
       onRegisterUser(gUser)
     }
 
     if (onLoginUser) onLoginUser(gUser)
-    setSuccessMsg("Google akkauntingiz orqali muvaffaqiyatli kirdingiz!")
+    setSuccessMsg(`Google orqali muvaffaqiyatli o'tdingiz! Ism: ${gUser.name}, Parol o'rnatildi.`)
     setTimeout(() => {
       setSuccessMsg('')
       setGoogleEmail('')
@@ -371,7 +395,7 @@ export function AuthModal({
 
         <div className="space-y-1">
           <h2 className="text-xl font-black text-slate-900 dark:text-white">
-            {mode === 'login' ? 'RoboContest Tizimiga Kirish' : "Ro'yxatdan O'tish"}
+            {mode === 'login' ? 'BlueContest Tizimiga Kirish' : "Ro'yxatdan O'tish"}
           </h2>
           <p className="text-xs text-slate-500 dark:text-slate-400">
             {mode === 'login'
