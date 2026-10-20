@@ -33,13 +33,61 @@ export default function App() {
   const [language, setLanguage] = useState('uz')
   const [searchQuery, setSearchQuery] = useState('')
 
+  // Default Seed Users
+  const DEFAULT_INITIAL_USERS = [
+    {
+      id: 'u_admin',
+      name: 'Admin',
+      org: 'BlueContest HQ',
+      rating: 2850,
+      solved: 215,
+      title: 'Hacker Programmer',
+      titleColor: 'text-emerald-500 bg-emerald-500/10 border-emerald-500/20',
+      avatar: '🤖',
+      password: 'qwertyuiop'
+    },
+    {
+      id: 'u_1',
+      name: 'Asadbek_Olimov',
+      org: 'TATU Samarkand',
+      rating: 2420,
+      solved: 168,
+      title: 'Grandmaster',
+      titleColor: 'text-red-500 bg-red-500/10 border-red-500/20',
+      avatar: '👨‍💻',
+      password: 'password123'
+    },
+    {
+      id: 'u_2',
+      name: 'Sardor_Dev',
+      org: 'SamDU Inno',
+      rating: 2110,
+      solved: 112,
+      title: 'Master',
+      titleColor: 'text-purple-500 bg-purple-500/10 border-purple-500/20',
+      avatar: '🚀',
+      password: 'password123'
+    },
+    {
+      id: 'u_3',
+      name: 'Nodira_Code',
+      org: 'TUIT Tashkent',
+      rating: 1840,
+      solved: 65,
+      title: 'Specialist',
+      titleColor: 'text-cyan-500 bg-cyan-500/10 border-cyan-500/20',
+      avatar: '👩‍💻',
+      password: 'password123'
+    }
+  ]
+
   // Central DB + Local Storage Users state
   const [users, setUsers] = useState(() => {
     try {
       const savedUsers = localStorage.getItem('bluecontest_users')
-      return savedUsers ? JSON.parse(savedUsers) : []
+      return savedUsers ? JSON.parse(savedUsers) : DEFAULT_INITIAL_USERS
     } catch {
-      return []
+      return DEFAULT_INITIAL_USERS
     }
   })
 
@@ -75,6 +123,9 @@ export default function App() {
       }
     } catch (e) {
       console.log('Central backend offline, using local storage fallback')
+      if (users.length === 0) {
+        setUsers(DEFAULT_INITIAL_USERS)
+      }
     }
   }
 
