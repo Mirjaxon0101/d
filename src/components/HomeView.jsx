@@ -24,11 +24,14 @@ export function HomeView({
   onOpenContest,
   users = []
 }) {
+  const activeUserCount = users.filter(u => !u.isBlocked).length
+  const totalSolvedCount = users.reduce((acc, u) => acc + (u.solved || 0), 0)
+
   const stats = [
-    { label: { uz: 'Jami masalalar', ru: 'Всего задач', en: 'Total Problems' }, value: '1,248+', icon: Code, color: 'text-blue-500 bg-blue-500/10' },
-    { label: { uz: 'Yechilgan yechimlar', ru: 'Решенных решений', en: 'Accepted Submissions' }, value: '840,920+', icon: CheckCircle2, color: 'text-emerald-500 bg-emerald-500/10' },
-    { label: { uz: 'Faol dasturchilar', ru: 'Активных кодеров', en: 'Active Coders' }, value: '42,500+', icon: Users, color: 'text-indigo-500 bg-indigo-500/10' },
-    { label: { uz: 'Oʻtkazilgan musobaqalar', ru: 'Проведено соревнований', en: 'Contests Hosted' }, value: '185', icon: Trophy, color: 'text-amber-500 bg-amber-500/10' }
+    { label: { uz: 'Jami masalalar', ru: 'Всего задач', en: 'Total Problems' }, value: '250', icon: Code, color: 'text-blue-500 bg-blue-500/10' },
+    { label: { uz: 'Yechilgan yechimlar', ru: 'Решенных решений', en: 'Accepted Submissions' }, value: totalSolvedCount.toLocaleString(), icon: CheckCircle2, color: 'text-emerald-500 bg-emerald-500/10' },
+    { label: { uz: 'Faol dasturchilar', ru: 'Активных кодеров', en: 'Active Coders' }, value: activeUserCount.toLocaleString(), icon: Users, color: 'text-indigo-500 bg-indigo-500/10' },
+    { label: { uz: 'Oʻtkazilgan musobaqalar', ru: 'Проведено соревнований', en: 'Contests Hosted' }, value: '12', icon: Trophy, color: 'text-amber-500 bg-amber-500/10' }
   ]
 
   const upcomingContest = {
@@ -91,7 +94,7 @@ export function HomeView({
             <span>BlueContest Online Judge 2.0</span>
           </div>
 
-          <h1 className="text-3xl sm:text-5xl font-black leading-tight tracking-tight">
+          <h1 className="text-4xl sm:text-6xl font-black leading-tight tracking-tight">
             Mantiqiy fikrlashni rivojlantiring va{' '}
             <span className="bg-gradient-to-r from-blue-400 via-indigo-400 to-sky-400 bg-clip-text text-transparent">
               Dasturlash Chempioniga
@@ -99,7 +102,7 @@ export function HomeView({
             aylaning!
           </h1>
 
-          <p className="text-base sm:text-lg text-slate-300 font-normal leading-relaxed">
+          <p className="text-lg sm:text-xl text-slate-200 font-normal leading-relaxed">
             {language === 'uz'
               ? "Minglab dasturlash masalalarini yeching, xalqaro va milliy musobaqalarda qatnashib, reytingingizni oshiring!"
               : "Решайте тысячи задач по программированию, участвуйте в турнирах и повышайте свой рейтинг!"}
@@ -108,18 +111,18 @@ export function HomeView({
           <div className="flex flex-wrap items-center gap-4 pt-2">
             <button
               onClick={() => onNavigateTab('problems')}
-              className="inline-flex items-center space-x-2 px-6 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm shadow-lg shadow-blue-600/30 transition-all hover:scale-105"
+              className="inline-flex items-center space-x-2 px-7 py-4 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-base shadow-lg shadow-blue-600/30 transition-all hover:scale-105"
             >
-              <Code className="w-4 h-4" />
+              <Code className="w-5 h-5" />
               <span>Masalalarga o'tish</span>
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="w-5 h-5" />
             </button>
 
             <button
               onClick={() => onNavigateTab('contests')}
-              className="inline-flex items-center space-x-2 px-6 py-3.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-sm border border-slate-700 transition-all"
+              className="inline-flex items-center space-x-2 px-7 py-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-base border border-slate-700 transition-all"
             >
-              <Trophy className="w-4 h-4 text-amber-400" />
+              <Trophy className="w-5 h-5 text-amber-400" />
               <span>Musobaqalar jadvali</span>
             </button>
           </div>
@@ -139,8 +142,8 @@ export function HomeView({
                 <Icon className="w-6 h-6 stroke-[2.5]" />
               </div>
               <div>
-                <p className="text-2xl font-black text-slate-900 dark:text-white tracking-tight">{item.value}</p>
-                <p className="text-xs font-semibold text-slate-500 dark:text-slate-400 mt-0.5">
+                <p className="text-3xl font-black text-slate-900 dark:text-white tracking-tight">{item.value}</p>
+                <p className="text-sm font-semibold text-slate-500 dark:text-slate-400 mt-0.5">
                   {item.label[language] || item.label.uz}
                 </p>
               </div>

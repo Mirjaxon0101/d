@@ -4,3 +4,8 @@ Port 3000 is in use, trying another one...
 
   ➜  Local:   http://localhost:3001/
   ➜  Network: http://192.168.0.2:3001/
+1:28:37 PM [vite] hmr update /src/components/AuthModal.jsx, /src/index.css
+1:28:42 PM [vite] hmr update /src/components/AuthModal.jsx, /src/index.css
+1:29:03 PM [vite] hmr update /src/components/HomeView.jsx, /src/index.css
+1:29:09 PM [vite] hmr update /src/components/HomeView.jsx, /src/index.css
+1:29:12 PM [vite] hmr update /src/components/HomeView.jsx, /src/index.css
