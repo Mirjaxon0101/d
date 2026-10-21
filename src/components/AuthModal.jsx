@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { X, Lock, Mail, User, ShieldCheck, ArrowRight, KeyRound } from 'lucide-react'
+import { supabase } from '../lib/supabaseClient'
 import { auth, db, googleProvider } from '../lib/firebaseClient'
 import { signInWithPopup } from 'firebase/auth'
 import { doc, getDoc, setDoc } from 'firebase/firestore'
@@ -303,6 +304,13 @@ export function AuthModal({
         solved: 0,
         org: 'Mustaqil o\'rganuvchi',
         avatar: '💻'
+      }
+
+      // Insert into Supabase table
+      try {
+        await supabase.from('users').insert([newUser])
+      } catch (suErr) {
+        console.log('Supabase registration insert error/offline')
       }
 
       if (onRegisterUser) onRegisterUser(newUser)
