@@ -211,18 +211,58 @@ export function ProblemsView({
     setCustomOutput(res.output)
   }
 
+  const generateHiddenTestCases = (prob) => {
+    // Generate 3 dynamic hidden test cases based on problem ID to prevent hardcoded prints
+    const pId = prob.id || 1
+    const testCases = [
+      { input: prob.sampleInput, expected: prob.sampleOutput }
+    ]
+
+    // Create custom test cases based on problem ID math logic
+    if (pId === 1) { // A + B
+      testCases.push({ input: "10 20", expected: "30" })
+      testCases.push({ input: "100 250", expected: "350" })
+    } else if (pId === 2) { // Binary Search
+      testCases.push({ input: "5\n1 3 5 7 9\n7", expected: "3" })
+      testCases.push({ input: "4\n2 4 6 8\n5", expected: "-1" })
+    } else {
+      // Dynamic test cases for other problems
+      const val1 = (pId * 3) % 100 + 5
+      const val2 = (pId * 7) % 100 + 10
+      testCases.push({ input: `${val1} ${val2}`, expected: `${val1 + val2}` })
+      testCases.push({ input: `${val1 * 2} ${val2 * 2}`, expected: `${(val1 + val2) * 2}` })
+    }
+
+    return testCases
+  }
+
   const handleSubmitSolution = async () => {
     setIsEvaluating(true)
     setJudgeStatus({ status: 'Running', time: '...', memory: '...' })
-    const res = await evaluateUserCodeAsync(userCode, codeLang, selectedProblem.sampleInput, selectedProblem.sampleOutput)
+
+    const testCases = generateHiddenTestCases(selectedProblem)
+    let passedCount = 0
+    let failedTestDetails = null
+
+    for (let i = 0; i < testCases.length; i++) {
+      const tc = testCases[i]
+      const res = await evaluateUserCodeAsync(userCode, codeLang, tc.input, tc.expected)
+      if (res.isCorrect) {
+        passedCount++
+      } else {
+        failedTestDetails = `Test #${i + 1} da xatolik! Kutilgan: "${tc.expected}", Olingan: "${res.output}"`
+        break
+      }
+    }
+
     setIsEvaluating(false)
 
-    if (res.isCorrect) {
+    if (passedCount === testCases.length) {
       setJudgeStatus({
         status: 'Accepted',
         time: '24 ms',
         memory: '8.4 MB',
-        passedTests: res.passedTests
+        passedTests: `${testCases.length} / ${testCases.length}`
       })
       if (onProblemSolved) {
         onProblemSolved(selectedProblem?.points || 15, selectedProblem?.id)
@@ -232,7 +272,7 @@ export function ProblemsView({
         status: 'Wrong Answer',
         time: '18 ms',
         memory: '7.1 MB',
-        passedTests: res.passedTests
+        passedTests: `${passedCount} / ${testCases.length} (${failedTestDetails || 'Xato natija'})`
       })
     }
   }

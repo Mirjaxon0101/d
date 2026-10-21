@@ -36,3 +36,4 @@ Port 3000 is in use, trying another one...
 8:15:21 AM [vite] server restarted.
 8:17:22 AM [vite] hmr update /src/components/AuthModal.jsx, /src/index.css
 8:18:13 AM [vite] hmr update /src/components/AuthModal.jsx, /src/index.css
+8:32:52 AM [vite] hmr update /src/components/ProblemsView.jsx, /src/index.css
