@@ -9,7 +9,8 @@ import { AdminPanel } from './components/AdminPanel'
 import { AuthModal } from './components/AuthModal'
 import { UserSettingsModal } from './components/UserSettingsModal'
 import { initialProblems } from './data/problemsData'
-import { supabase } from './lib/supabaseClient'
+import { db } from './lib/firebaseClient'
+import { collection, getDocs, doc, setDoc } from 'firebase/firestore'
 
 export function getUserTitleInfo(solvedCount) {
   if (solvedCount >= 200) {
@@ -102,22 +103,24 @@ export default function App() {
     }
   })
 
-  // Fetch central database users on load (Supabase first, then local API fallback)
+  // Fetch central database users on load (Firebase Firestore first, then local API fallback)
   const fetchUsers = async () => {
     try {
-      // 1. Try Supabase
-      const { data: suUsers, error: suErr } = await supabase.from('users').select('*')
-      if (suUsers && suUsers.length > 0) {
-        setUsers(suUsers)
-        localStorage.setItem('bluecontest_users', JSON.stringify(suUsers))
+      // 1. Try Firebase Firestore
+      const usersCol = collection(db, 'users')
+      const userSnapshot = await getDocs(usersCol)
+      const fbUsers = userSnapshot.docs.map(d => d.data())
+      if (fbUsers && fbUsers.length > 0) {
+        setUsers(fbUsers)
+        localStorage.setItem('bluecontest_users', JSON.stringify(fbUsers))
         if (currentUser) {
-          const synced = suUsers.find(u => u.id === currentUser.id || u.name.toLowerCase() === currentUser.name.toLowerCase())
+          const synced = fbUsers.find(u => u.id === currentUser.id || u.name.toLowerCase() === currentUser.name.toLowerCase())
           if (synced) setCurrentUser(synced)
         }
         return
       }
     } catch (err) {
-      console.log('Supabase fetch fallback to local API')
+      console.log('Firebase fetch fallback to local API')
     }
 
     try {

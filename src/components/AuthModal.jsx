@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { X, Lock, Mail, User, ShieldCheck, ArrowRight, KeyRound } from 'lucide-react'
-import { supabase } from '../lib/supabaseClient'
+import { auth, db, googleProvider } from '../lib/firebaseClient'
+import { signInWithPopup } from 'firebase/auth'
+import { doc, getDoc, setDoc } from 'firebase/firestore'
 
 export function AuthModal({
   isOpen,
@@ -317,19 +319,49 @@ export function AuthModal({
     }
   }
 
-  const handleGoogleOAuthRedirect = async () => {
+  const handleFirebaseGoogleAuth = async () => {
     try {
-      const { data, error } = await supabase.auth.signInWithOAuth({
-        provider: 'google',
-        options: {
-          redirectTo: window.location.origin
+      const result = await signInWithPopup(auth, googleProvider)
+      const user = result.user
+
+      const gEmailClean = (user.email || '').toLowerCase()
+      const gUsername = user.displayName || gEmailClean.split('@')[0]
+
+      const userRef = doc(db, 'users', user.uid)
+      const userSnap = await getDoc(userRef)
+
+      let gUserData
+      if (userSnap.exists()) {
+        gUserData = userSnap.data()
+      } else {
+        gUserData = {
+          id: user.uid,
+          name: gUsername,
+          email: gEmailClean,
+          password: 'firebase_google_auth',
+          rating: 1200,
+          title: 'Newbie',
+          titleColor: 'text-slate-500 bg-slate-500/10 border-slate-500/20',
+          solved: 0,
+          org: 'Google User',
+          avatar: user.photoURL || '🌐'
         }
-      })
-      if (error) {
-        setErrorMsg("Google OAuth xatolik: " + error.message)
+        await setDoc(userRef, gUserData)
       }
+
+      if (onRegisterUser && !userSnap.exists()) {
+        onRegisterUser(gUserData)
+      }
+      if (onLoginUser) onLoginUser(gUserData)
+
+      setSuccessMsg(`Firebase Google orqali muvaffaqiyatli kirdingiz! Ism: ${gUserData.name}`)
+      setTimeout(() => {
+        setSuccessMsg('')
+        onClose()
+      }, 1200)
     } catch (err) {
-      console.log('Supabase OAuth error, using Google Account simulation mode')
+      console.log('Firebase Popup Error or fallback mode:', err)
+      setErrorMsg("Firebase Auth Popup ishga tushmadi. Iltimos Google simulyatsiya rejimida e-pochtangizni kiriting.")
     }
   }
 
