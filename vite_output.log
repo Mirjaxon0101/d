@@ -37,3 +37,7 @@ Port 3000 is in use, trying another one...
 8:17:22 AM [vite] hmr update /src/components/AuthModal.jsx, /src/index.css
 8:18:13 AM [vite] hmr update /src/components/AuthModal.jsx, /src/index.css
 8:32:52 AM [vite] hmr update /src/components/ProblemsView.jsx, /src/index.css
+4:51:30 AM [vite] hmr update /src/components/HeaderFooter.jsx, /src/index.css
+4:51:45 AM [vite] hmr update /src/components/AuthModal.jsx, /src/index.css
+4:51:47 AM [vite] hmr update /src/components/AdminPanel.jsx, /src/index.css
+4:51:52 AM [vite] hmr update /src/App.jsx, /src/index.css

@@ -58,7 +58,7 @@ export function AdminPanel({
 
   const handleAdminLogin = (e) => {
     e.preventDefault()
-    if (username === 'Admin' && password === 'qwertyuiop') {
+    if (username === 'Admin' && password === 'Mashal888mpoi123') {
       setIsAuthenticated(true)
       setLoginError('')
     } else {

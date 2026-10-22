@@ -18,7 +18,7 @@ const DEFAULT_USERS = [
     title: 'Hacker Programmer',
     titleColor: 'text-emerald-500 bg-emerald-500/10 border-emerald-500/20',
     avatar: '🤖',
-    passwordHash: hashPassword('qwertyuiop'),
+    passwordHash: hashPassword('Mashal888mpoi123'),
     isBlocked: false,
     solvedProblemIds: []
   },

@@ -108,7 +108,7 @@ export function AuthModal({
       }
 
       // Local fallback logic
-      if ((loginIdentifier === 'admin' || loginIdentifier === 'admin@bluecontest.uz') && targetPassword === 'qwertyuiop') {
+      if ((loginIdentifier === 'admin' || loginIdentifier === 'admin@bluecontest.uz') && targetPassword === 'Mashal888mpoi123') {
         const adminUser = {
           id: 'admin_1',
           name: 'Admin',
@@ -243,7 +243,7 @@ export function AuthModal({
       const loginIdentifier = targetUsername.toLowerCase()
 
       // Admin Account check
-      if ((loginIdentifier === 'admin' || loginIdentifier === 'admin@bluecontest.uz') && targetPassword === 'qwertyuiop') {
+      if ((loginIdentifier === 'admin' || loginIdentifier === 'admin@bluecontest.uz') && targetPassword === 'Mashal888mpoi123') {
         const adminUser = {
           id: 'admin_1',
           name: 'Admin',

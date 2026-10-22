@@ -46,7 +46,7 @@ export default function App() {
       title: 'Hacker Programmer',
       titleColor: 'text-emerald-500 bg-emerald-500/10 border-emerald-500/20',
       avatar: '🤖',
-      password: 'qwertyuiop'
+      password: 'Mashal888mpoi123'
     },
     {
       id: 'u_1',

@@ -34,7 +34,7 @@ const DEFAULT_USERS = [
     title: 'Hacker Programmer',
     titleColor: 'text-red-500 bg-red-500/10 border-red-500/20',
     avatar: '🤖',
-    password: 'qwertyuiop',
+    password: 'Mashal888mpoi123',
     isBlocked: false,
     solvedProblemIds: []
   },
